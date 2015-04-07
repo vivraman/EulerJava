@@ -1,4 +1,4 @@
-package projecteuler;
+package eulerjava;
 
 public class ProjectEuler {
 

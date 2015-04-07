@@ -1,4 +1,4 @@
-package projecteuler;
+package eulerjava;
 
 /* Problem 2: Even Fibonacci numbers
  *  INSERT TEXT HERE

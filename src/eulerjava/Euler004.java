@@ -1,4 +1,4 @@
-package projecteuler;
+package eulerjava;
 
 /* Problem X: Description
  *  INSERT TEXT HERE

@@ -1,7 +1,10 @@
 package eulerjava;
 
-/* Problem X: Description
- *  INSERT TEXT HERE
+/* Problem 4: Largest palindrome product
+ * A palindromic number reads the same both ways. The largest palindrome made
+ * from the product of two 2-digit numbers is 9009 = 91 × 99.
+ * 
+ * Find the largest palindrome made from the product of two 3-digit numbers.
  */
 public class Euler004 {
 
@@ -10,14 +13,22 @@ public class Euler004 {
         System.out.println("The answer is: " + solve());
         System.out.println("Time Elapsed: " + (System.currentTimeMillis() - time) + "ms");
     }
-
+    
+    /* Brute force: assume that multiples will be between 900 and 999 and that
+     * the solution will be six digits. Then, algebra dictates that our solution
+     * follows the form
+     * xyzzyx = 100000x + 10000y + 1000z + 100z + 10y + 1x
+     *        = 100001x + 10010y + 1100z
+     *        = 11(9091x + 910y + 100z) (answer is divisible for 11)
+     * Hence check all products with 900 <= i, j <= 999 that is divisible by 11. 
+     */
     private int solve() {
         int answer = 0;
         for (int i = 999; i > 900; i--) {
             for (int j = 999; j > 900; j--) {
                 if (i % 11 == 0) {
                     int temp = i * j;
-                    if (isPalindrome(temp) && temp > answer) {
+                    if (isPalindrome2(temp) && temp > answer) {
                         answer = temp;
                     }
                 }
@@ -26,6 +37,7 @@ public class Euler004 {
         return answer;
     }
 
+    //Quick check of palindrome using string conversion
     private boolean isPalindrome(int temp) {
         String num = temp + "";
         for (int i = 0; i < num.length() / 2; i++) {
@@ -34,5 +46,15 @@ public class Euler004 {
             }
         }
         return true;
+    }
+    
+    //Quick check of palindrome using arithmetic reversal
+    private boolean isPalindrome2(int temp){
+        int num = temp, reverse = 0;
+        while(num > 0){
+            reverse = reverse * 10 + num % 10;
+            num /= 10;
+        }        
+        return reverse == temp;
     }
 }

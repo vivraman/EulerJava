@@ -1,7 +1,7 @@
 package eulerjava;
 
 /* Problem X: Description
- *  INSERT TEXT HERE
+ * INSERT TEXT HERE
  */
 public class Template {
     

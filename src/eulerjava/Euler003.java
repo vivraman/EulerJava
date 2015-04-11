@@ -26,9 +26,13 @@ public class Euler003 {
         long answer = 0;
         primes = new ArrayList<Long>();
         primes.add(2L);
-        for (long i = 3; i <= 600851475143L / 2; i+=2) {
+        for (long i = 3; i <= 600851475143L / 2; i += 2) {
             boolean isPrime = true;
+            int limit = (int) (Math.sqrt(answer) + 1);
             for (int j = 0; j < primes.size(); j++) {
+                if (primes.get(j) > limit) {
+                    break;
+                }
                 if (i % primes.get(j) == 0) {
                     isPrime = false;
                     break;
@@ -39,7 +43,7 @@ public class Euler003 {
                 while (value % i == 0) {
                     answer = i;
                     value /= i;
-                    if(value == 1){
+                    if (value == 1) {
                         return answer;
                     }
                 }

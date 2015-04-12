@@ -28,7 +28,7 @@ public class Euler004 {
             for (int j = 999; j > 900; j--) {
                 if (i % 11 == 0) {
                     int temp = i * j;
-                    if (isPalindrome2(temp) && temp > answer) {
+                    if (isPalindromeARITH(temp) && temp > answer) {
                         answer = temp;
                     }
                 }
@@ -38,7 +38,7 @@ public class Euler004 {
     }
 
     //Quick check of palindrome using string conversion
-    private boolean isPalindrome(int temp) {
+    private boolean isPalindromeSTR(int temp) {
         String num = temp + "";
         for (int i = 0; i < num.length() / 2; i++) {
             if (num.charAt(i) != num.charAt(num.length() - (i + 1))) {
@@ -49,7 +49,7 @@ public class Euler004 {
     }
     
     //Quick check of palindrome using arithmetic reversal
-    private boolean isPalindrome2(int temp){
+    private boolean isPalindromeARITH(int temp){
         int num = temp, reverse = 0;
         while(num > 0){
             reverse = reverse * 10 + num % 10;

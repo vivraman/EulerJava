@@ -29,7 +29,7 @@ public class Euler005 {
         primes = new ArrayList<Integer>();
         for (int i = 2; i < 20; i++) {
             boolean isPrime = true;
-            int limit = (int) (Math.sqrt(answer) + 1);
+            int limit = (int) (Math.sqrt(i));
             for (int j = 0; j < primes.size(); j++) {
                 if (primes.get(j) > limit) {
                     break;

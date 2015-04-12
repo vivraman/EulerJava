@@ -28,7 +28,7 @@ public class Euler003 {
         primes.add(2L);
         for (long i = 3; i <= 600851475143L / 2; i += 2) {
             boolean isPrime = true;
-            int limit = (int) (Math.sqrt(answer) + 1);
+            int limit = (int) (Math.sqrt(i));
             for (int j = 0; j < primes.size(); j++) {
                 if (primes.get(j) > limit) {
                     break;

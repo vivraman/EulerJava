@@ -1,7 +1,5 @@
 package eulerjava;
 
-import java.util.ArrayList;
-
 /* Problem X: 10001st prime
  * By listing the first six prime numbers: 2, 3, 5, 7, 11, and 13, we can see 
  * that the 6th prime is 13.
@@ -29,7 +27,7 @@ public class Euler007 {
         int answer = 3;
         while (counter < 10001) {
             boolean isPrime = true;
-            int limit = (int) (Math.sqrt(answer) + 1);
+            int limit = (int) (Math.sqrt(answer));
             for (int j = 0; j < counter; j++) {
                 if(primes[j] > limit){
                     break; 

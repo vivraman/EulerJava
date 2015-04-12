@@ -3,6 +3,6 @@ package eulerjava;
 public class ProjectEuler {
 
     public static void main(String[] args) {
-        new Euler005();
+        new Euler008();
     }
 }

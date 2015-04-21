@@ -18,7 +18,7 @@ public class Euler005 {
         System.out.println("The answer is: " + solve());
         System.out.println("Time Elapsed: " + (System.currentTimeMillis() - time) + "ms");
     }
-
+    
     /* Multiply together the highest powers of primes less than x that are
      * also less than x. First find all primes less than x, then while finding
      * these primes, see how many times they can be raised while still staying 

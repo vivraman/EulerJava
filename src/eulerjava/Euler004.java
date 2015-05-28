@@ -6,7 +6,13 @@ package eulerjava;
  * 
  * Find the largest palindrome made from the product of two 3-digit numbers.
  */
-public class Euler004 extends EulerTemplate{
+public class Euler004 {
+
+    public Euler004() {
+        long time = System.currentTimeMillis();
+        System.out.println("The answer is: " + solve());
+        System.out.println("Time Elapsed: " + (System.currentTimeMillis() - time) + "ms");
+    }
 
     /* Brute force: assume that multiples will be between 900 and 999 and that
      * the solution will be six digits. Then, algebra dictates that our solution
@@ -41,14 +47,14 @@ public class Euler004 extends EulerTemplate{
         }
         return true;
     }
-    
+
     //Quick check of palindrome using arithmetic reversal
-    private boolean isPalindromeARITH(int temp){
+    private boolean isPalindromeARITH(int temp) {
         int num = temp, reverse = 0;
-        while(num > 0){
+        while (num > 0) {
             reverse = reverse * 10 + num % 10;
             num /= 10;
-        }        
+        }
         return reverse == temp;
     }
 }

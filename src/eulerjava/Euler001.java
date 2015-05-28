@@ -1,4 +1,3 @@
-
 package eulerjava;
 
 /* Problem 1: Multiples of 3 and 5
@@ -7,7 +6,13 @@ package eulerjava;
  * 
  * Find the sum of all the multiples of 3 or 5 below 1000.
  */
-public class Euler001 extends EulerTemplate {
+public class Euler001 {
+
+    public Euler001() {
+        long time = System.currentTimeMillis();
+        System.out.println("The answer is: " + solve());
+        System.out.println("Time Elapsed: " + (System.currentTimeMillis() - time) + "ms");
+    }
 
     //Brute force solution, iterate through full range:
     public long solve() {

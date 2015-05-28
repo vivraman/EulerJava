@@ -9,10 +9,16 @@ import java.util.ArrayList;
  * What is the smallest positive number that is evenly divisible by all of
  * the numbers from 1 to 20?
  */
-public class Euler005 extends EulerTemplate{
+public class Euler005 {
 
     ArrayList<Integer> primes;
 
+    public Euler005() {
+        long time = System.currentTimeMillis();
+        System.out.println("The answer is: " + solve());
+        System.out.println("Time Elapsed: " + (System.currentTimeMillis() - time) + "ms");
+    }
+    
     /* Multiply together the highest powers of primes less than x that are
      * also less than x. First find all primes less than x, then while finding
      * these primes, see how many times they can be raised while still staying 

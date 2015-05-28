@@ -7,10 +7,16 @@ import java.util.*;
  * 
  * What is the largest prime factor of the number 600851475143 ?
  */
-public class Euler003 extends EulerTemplate{
+public class Euler003 {
 
     ArrayList<Long> primes;
-    
+
+    public Euler003() {
+        long time = System.currentTimeMillis();
+        System.out.println("The answer is: " + solve());
+        System.out.println("Time Elapsed: " + (System.currentTimeMillis() - time) + "ms");
+    }
+
     /* Brute force; find all primes (skip 2 since our value is odd) less than
      * half of our value. If prime, divide (if divisible) our value by the new prime 
      * repeatedly until it is no longer divisible. Continue until value = 1 (done)

@@ -8,7 +8,13 @@ package eulerjava;
  * By considering the terms in the Fibonacci sequence whose values do not exceed
  * four million, find the sum of the even-valued terms.
  */
-public class Euler002 extends EulerTemplate{
+public class Euler002 {
+    
+    public Euler002() {
+        long time = System.currentTimeMillis();
+        System.out.println("The answer is: " + solve());
+        System.out.println("Time Elapsed: " + (System.currentTimeMillis() - time) + "ms");
+    }
     
     //Brute force solution, iterate through all fibonacci numbers:
     public long solve() {

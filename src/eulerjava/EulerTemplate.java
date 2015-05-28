@@ -3,7 +3,7 @@ package eulerjava;
 /* Problem X: Description
  * INSERT TEXT HERE
  */
-abstract class EulerTemplate {
+public class EulerTemplate {
 
     public EulerTemplate() {
         long time = System.currentTimeMillis();
@@ -11,5 +11,7 @@ abstract class EulerTemplate {
         System.out.println("Time Elapsed: " + (System.currentTimeMillis() - time) + "ms");
     }
 
-    public abstract long solve();
+    public long solve() {
+        return 0;
+    }
 }

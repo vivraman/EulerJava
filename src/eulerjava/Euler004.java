@@ -6,23 +6,17 @@ package eulerjava;
  * 
  * Find the largest palindrome made from the product of two 3-digit numbers.
  */
-public class Euler004 {
+public class Euler004 extends EulerTemplate{
 
-    public Euler004() {
-        long time = System.currentTimeMillis();
-        System.out.println("The answer is: " + solve());
-        System.out.println("Time Elapsed: " + (System.currentTimeMillis() - time) + "ms");
-    }
-    
     /* Brute force: assume that multiples will be between 900 and 999 and that
      * the solution will be six digits. Then, algebra dictates that our solution
      * follows the form
      * xyzzyx = 100000x + 10000y + 1000z + 100z + 10y + 1x
      *        = 100001x + 10010y + 1100z
-     *        = 11(9091x + 910y + 100z) (answer is divisible for 11)
+     *        = 11(9091x + 910y + 100z) (answer is divisible by 11)
      * Hence check all products with 900 <= i, j <= 999 that is divisible by 11. 
      */
-    private int solve() {
+    public long solve() {
         int answer = 0;
         for (int i = 999; i > 900; i--) {
             for (int j = 999; j > 900; j--) {

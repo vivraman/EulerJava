@@ -3,17 +3,13 @@ package eulerjava;
 /* Problem X: Description
  * INSERT TEXT HERE
  */
-public class Template {
-    
-    public Template(){
+abstract class EulerTemplate {
+
+    public EulerTemplate() {
         long time = System.currentTimeMillis();
         System.out.println("The answer is: " + solve());
         System.out.println("Time Elapsed: " + (System.currentTimeMillis() - time) + "ms");
     }
 
-    private int solve() {
-        int answer = 0;
-        //CODE HERE
-        return answer;
-    }
+    public abstract long solve();
 }

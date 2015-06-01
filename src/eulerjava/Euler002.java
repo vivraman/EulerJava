@@ -10,6 +10,7 @@ package eulerjava;
  */
 public class Euler002 {
     
+    int[] primes;
     public Euler002() {
         long time = System.currentTimeMillis();
         System.out.println("The answer is: " + solve());

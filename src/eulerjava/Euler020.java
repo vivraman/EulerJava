@@ -1,50 +1,33 @@
 package eulerjava;
 
-import java.util.Calendar;
+import java.math.BigInteger;
 
 /* Problem X: Description
  * INSERT TEXT HERE
  */
-public class Euler019 {
+public class Euler020 {
 
-    int day = 7, month = 1, year = 1900;
-    int[] daysInMonth = {0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
-
-    public Euler019() {
+    public Euler020() {
         long time = System.currentTimeMillis();
         System.out.println("The answer is: " + solve());
         System.out.println("Time Elapsed: " + (System.currentTimeMillis() - time) + "ms");
     }
 
     public long solve() {
-        int counter = 0;
-        while (year < 2001) {
-            if (day == 1 && year > 1900) {
-                ++counter;
-            }
-
-            day += 7;
-            if (day > daysInMonth[month]) {
-                if (month == 2 && year % 4 == 0) {
-                    if (year % 100 == 0 && year % 400 != 0) {
-                        day -= daysInMonth[month];
-                        month++;
-                    } else {
-                        if (day > 29) {
-                            day -= 29;
-                            month++;
-                        }
-                    }
-                } else {
-                    day -= daysInMonth[month];
-                    month++;
-                }
-            }
-            if (month > 12) {
-                month -= 12;
-                year++;
+        long answer = 0;
+        BigInteger fact = new BigInteger("1");
+        for (int i = 2; i < 100; i++) {
+            if (i % 5 != 0) {
+                fact = fact.multiply(new BigInteger(i + ""));
+            } else {
+                fact = fact.multiply(new BigInteger(i + ""));
+                fact = fact.divide(new BigInteger(10 + ""));
             }
         }
-        return counter;
+        String temp = fact.toString();
+        for (int i = 0; i < temp.length(); i++) {
+            answer += temp.charAt(i) - '0';
+        }
+        return answer;
     }
 }

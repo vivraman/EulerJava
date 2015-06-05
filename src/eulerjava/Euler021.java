@@ -19,7 +19,7 @@ public class Euler021 {
         long answer = 0;
         int temp = 0;
         for (int i = 1; i < 10001; i++) {
-            if(i == properDivisorSum(temp = properDivisorSum(i)) && i != temp){
+            if (i == properDivisorSum(temp = properDivisorSum(i)) && i != temp) {
                 answer += i;
             }
         }
@@ -29,9 +29,9 @@ public class Euler021 {
     public int properDivisorSum(int num) {
         int sum = 0;
         for (int i = 2; i < Math.sqrt(num); i++) {
-            if(num % i == 0){
+            if (num % i == 0) {
                 sum += i;
-                sum += num/i;
+                sum += num / i;
             }
         }
         return sum + 1;

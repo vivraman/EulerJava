@@ -7,8 +7,9 @@ import java.math.BigInteger;
  */
 public class Euler025 {
 
-    BigInteger prev, next, temp;
+    BigInteger prev, next, temp, upper;
     int nextindex;
+
     public Euler025() {
         long time = System.currentTimeMillis();
         System.out.println("The answer is: " + solve());
@@ -16,13 +17,16 @@ public class Euler025 {
     }
 
     public long solve() {
-        prev = new BigInteger("1"); next = new BigInteger("2");
+        prev = new BigInteger("1");
+        next = new BigInteger("2");
+        upper = new BigInteger("10");
+        upper = upper.pow(999);
         nextindex = 3;
-        while(next.toString().length() < 1000){
-           temp = next.add(prev);
-           prev = next;
-           next = temp;
-           nextindex++;
+        while (next.compareTo(upper) == -1) {
+            temp = next.add(prev);
+            prev = next;
+            next = temp;
+            nextindex++;
         }
         return nextindex;
     }

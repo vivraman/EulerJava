@@ -2,7 +2,8 @@ package euler.java.solutions;
 
 import java.math.BigInteger;
 
-/** Problem 26: Reciprocal cycles
+/**
+ * Problem 26: Reciprocal cycles
  * Find the value of d < 1000 for which 1/d contains the longest recurring cycle in its decimal fraction part.
  */
 public class Euler026 extends EulerProblem {

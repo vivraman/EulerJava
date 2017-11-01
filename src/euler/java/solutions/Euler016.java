@@ -2,11 +2,12 @@ package euler.java.solutions;
 
 import java.math.BigInteger;
 
-/** Problem 16: Power digit sum
+/**
+ * Problem 16: Power digit sum
  * 2^15 = 32768 and the sum of its digits is 3 + 2 + 7 + 6 + 8 = 26.
  * What is the sum of the digits of the number 2^1000?
  */
-public class Euler016 extends EulerProblem{
+public class Euler016 extends EulerProblem {
 
     /**
      * BigInteger makes this relatively simple to implement.

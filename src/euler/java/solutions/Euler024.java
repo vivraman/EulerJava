@@ -1,10 +1,11 @@
 package euler.java.solutions;
 
-/** Problem 24: Lexicographic permutations
+/**
+ * Problem 24: Lexicographic permutations
  * A permutation is an ordered arrangement of objects. For example, 3124 is one possible permutation of the digits
  * 1, 2, 3 and 4. If all of the permutations are listed numerically or alphabetically, we call it lexicographic
  * order.
- *
+ * <p>
  * What is the millionth lexicographic permutation of the digits 0, 1, 2, 3, 4, 5, 6, 7, 8 and 9?
  */
 public class Euler024 extends EulerProblem {

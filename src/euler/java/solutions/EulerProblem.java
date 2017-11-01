@@ -1,6 +1,7 @@
 package euler.java.solutions;
 
-/** Superclass for all Euler problems.
+/**
+ * Superclass for all Euler problems.
  */
 public class EulerProblem {
 

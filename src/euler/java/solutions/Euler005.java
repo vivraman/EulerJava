@@ -2,21 +2,22 @@ package euler.java.solutions;
 
 import java.util.ArrayList;
 
-/** Problem 5: Smallest multiple
+/**
+ * Problem 5: Smallest multiple
  * 2520 is the smallest number that can be divided by each of the numbers from
  * 1 to 10 without any remainder.
- * 
+ * <p>
  * What is the smallest positive number that is evenly divisible by all of
  * the numbers from 1 to 20?
  */
-public class Euler005 extends EulerProblem{
+public class Euler005 extends EulerProblem {
 
     ArrayList<Integer> primes;
 
     /**
      * Multiply together the highest powers of primes less than x that are
      * also less than x. First find all primes less than x, then while finding
-     * these primes, see how many times they can be raised while still staying 
+     * these primes, see how many times they can be raised while still staying
      * below x. Multiply that result with current answer.
      *
      * @return solution to Problem 11
@@ -51,7 +52,7 @@ public class Euler005 extends EulerProblem{
 
     /**
      * Multiply together the highest powers of primes less than x that are also
-     * less than x. For x = 20, the only prime powers that fit are 2^4 = 16 < 20 
+     * less than x. For x = 20, the only prime powers that fit are 2^4 = 16 < 20
      * and 3^2 = 9 < 20. All other primes cannot be raised to more than 1
      * before becoming greater than 20.
      *

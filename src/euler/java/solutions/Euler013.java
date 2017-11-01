@@ -2,7 +2,8 @@ package euler.java.solutions;
 
 import java.math.BigInteger;
 
-/** Problem 13: Large sum
+/**
+ * Problem 13: Large sum
  * Work out the first ten digits of the sum of the following one-hundred 50-digit numbers.
  */
 public class Euler013 extends EulerProblem {

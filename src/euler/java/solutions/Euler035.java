@@ -2,7 +2,6 @@ package euler.java.solutions;
 
 import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.Iterator;
 
 /**
  * The number, 197, is called a circular prime because all rotations of the digits: 197, 971, and 719, are
@@ -23,6 +22,7 @@ public class Euler035 extends EulerProblem {
      *
      * @return solution to Problem 35
      */
+    @Override
     protected String solve() {
         ArrayList<Integer> primeList = new ArrayList<>();
         HashSet<Integer> primes = generatePrimes(primeList, LIMIT);

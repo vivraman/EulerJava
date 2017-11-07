@@ -1,7 +1,7 @@
 package euler.java.solutions;
 
 import java.math.BigInteger;
-import java.util.Hashtable;
+import java.util.HashSet;
 
 /**
  * Problem X: Description
@@ -18,13 +18,13 @@ public class Euler029 extends EulerProblem {
     @Override
     protected String solve() {
         int counter = 0;
-        Hashtable<BigInteger, Integer> powers = new Hashtable<>();
+        HashSet<BigInteger> powers = new HashSet<>();
         for (int i = 2; i < 101; i++) {
             BigInteger currentPow = new BigInteger(i + ""), pow = new BigInteger(i + "");
             for (int j = 2; j < 101; j++) {
                 currentPow = currentPow.multiply(pow);
-                if (!powers.containsKey(currentPow)) {
-                    powers.put(currentPow, 1);
+                if (!powers.contains(currentPow)) {
+                    powers.add(currentPow);
                     counter++;
                 }
             }

@@ -3,7 +3,6 @@ package euler.java.solutions;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
-import java.util.Arrays;
 
 /**
  * Problem 67: Maximum path sum II

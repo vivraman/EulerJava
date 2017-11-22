@@ -12,7 +12,7 @@ package euler.java.solutions;
  * Find the difference between the sum of the squares of the first one hundred
  * natural numbers and the square of the sum.
  */
-public class Euler006 extends EulerProblem {
+public class Euler006 implements EulerProblem {
 
     /**
      * A simple expansion of (1 + 2 + 3 + ... n)^2 - 1^2 + 2^2 + 3^2 + ... + n^2
@@ -21,8 +21,7 @@ public class Euler006 extends EulerProblem {
      *
      * @return solution to Problem 6
      */
-    @Override
-    protected String solve() {
+    public String solve() {
         int answer = 0;
         for (int i = 1; i < 100; i++) {
             for (int j = i + 1; j <= 100; j++) {

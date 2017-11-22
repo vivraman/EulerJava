@@ -9,7 +9,7 @@ package euler.java.solutions;
  * There exists exactly one Pythagorean triplet for which a + b + c = 1000.
  * Find the product abc.
  */
-public class Euler009 extends EulerProblem {
+public class Euler009 implements EulerProblem {
 
     /**
      * Standard brute force algorithm, using a and b as variables while c is the difference
@@ -18,8 +18,7 @@ public class Euler009 extends EulerProblem {
      *
      * @return solution to Problem 9
      */
-    @Override
-    protected String solve() {
+    public String solve() {
         int k = 0;
         for (int i = 3; i < 1000; i++) {
             for (int j = i + 1; j < 1000; j++) {

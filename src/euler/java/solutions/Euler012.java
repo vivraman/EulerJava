@@ -19,7 +19,7 @@ package euler.java.solutions;
  * <p>
  * What is the value of the first triangle number to have over five hundred divisors?
  */
-public class Euler012 extends EulerProblem {
+public class Euler012 implements EulerProblem {
 
     private int[] primes;
     private int primeNum;
@@ -34,8 +34,7 @@ public class Euler012 extends EulerProblem {
      *
      * @return solution to Problem 12
      */
-    @Override
-    protected String solve() {
+    public String solve() {
         primes = new int[500];
         primes[0] = 2;
         primeNum = 1;

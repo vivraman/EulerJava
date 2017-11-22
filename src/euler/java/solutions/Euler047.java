@@ -7,7 +7,7 @@ import java.util.ArrayList;
  * Find the first four consecutive integers to have four distinct prime factors each. What is the first of
  * these numbers?
  */
-public class Euler047 extends EulerProblem {
+public class Euler047 implements EulerProblem {
 
     private static final int CONSECUTIVE_PRIME_FACTOR_NUM = 4;
 
@@ -19,8 +19,7 @@ public class Euler047 extends EulerProblem {
      *
      * @return solution to Problem 47
      */
-    @Override
-    protected String solve() {
+    public String solve() {
         ArrayList<Integer> primes = new ArrayList<>();
         primes.add(2);
 

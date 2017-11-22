@@ -9,7 +9,7 @@ package euler.java.solutions;
  * <p>
  * How many different ways can £2 be made using any number of coins?
  */
-public class Euler031 extends EulerProblem {
+public class Euler031 implements EulerProblem {
 
     private static final int[] CURRENCY_VALUES = {1, 2, 5, 10, 20, 50, 100, 200};
     private static final int TARGET = 200;
@@ -21,8 +21,7 @@ public class Euler031 extends EulerProblem {
      *
      * @return solution to Problem 31
      */
-    @Override
-    protected String solve() {
+    public String solve() {
         return checkSum(CURRENCY_VALUES[6], 6, 0, 1) + "";
     }
 

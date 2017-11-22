@@ -9,7 +9,7 @@ package euler.java.solutions;
  * By considering the terms in the Fibonacci sequence whose values do not exceed
  * four million, find the sum of the even-valued terms.
  */
-public class Euler002 extends EulerProblem {
+public class Euler002 implements EulerProblem {
 
     int[] primes;
 
@@ -18,8 +18,7 @@ public class Euler002 extends EulerProblem {
      *
      * @return solution to Problem 2
      */
-    @Override
-    protected String solve() {
+    public String solve() {
         int answer = 0;
         int n = 1;
         int n_ = 1;

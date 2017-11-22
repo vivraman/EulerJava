@@ -14,7 +14,7 @@ package euler.java.solutions;
  * <p>
  * What is the sum of the numbers on the diagonals in a 1001 by 1001 spiral formed in the same way?
  */
-public class Euler028 extends EulerProblem {
+public class Euler028 implements EulerProblem {
 
     /**
      * The diagonal sum is equal to the sum of all four corners of each consecutive box of numbers, the dimensions
@@ -27,8 +27,7 @@ public class Euler028 extends EulerProblem {
      *
      * @return solution to Problem 28
      */
-    @Override
-    protected String solve() {
+    public String solve() {
         long sum = 1, baseCorner = 1;
         for (int side = 3; side <= 1001; side += 2) {
             baseCorner += side - 1;

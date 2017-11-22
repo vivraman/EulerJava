@@ -15,7 +15,7 @@ import java.io.FileReader;
  * <p>
  * Find the maximum total from top to bottom in triangle.txt, a 15K text file containing a triangle with one-hundred rows.
  */
-public class Euler067 extends EulerProblem {
+public class Euler067 implements EulerProblem {
 
     /**
      * Use the same method that was used in Problem 18 to solve this. First, generate the int[][] needed for the
@@ -23,8 +23,7 @@ public class Euler067 extends EulerProblem {
      *
      * @return solution to Problem 67
      */
-    @Override
-    protected String solve() {
+    public String solve() {
         int[][] triangle = new int[100][];
 
         try {

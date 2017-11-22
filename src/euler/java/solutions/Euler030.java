@@ -4,7 +4,7 @@ package euler.java.solutions;
  * Problem 30: Digit fifth powers
  * Find the sum of all the numbers that can be written as the sum of fifth powers of their digits.
  */
-public class Euler030 extends EulerProblem {
+public class Euler030 implements EulerProblem {
 
     /**
      * The most significant aspect of this problem to immediately tackle is the upper bound of the
@@ -16,8 +16,7 @@ public class Euler030 extends EulerProblem {
      *
      * @return solution to Problem 30
      */
-    @Override
-    protected String solve() {
+    public String solve() {
         long answer = 0;
         for (int i = 2; i < 354294; i++) {
             if (powerSumValid(i)) {

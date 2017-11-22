@@ -7,15 +7,14 @@ package euler.java.solutions;
  * <p>
  * Find the sum of all the multiples of 3 or 5 below 1000.
  */
-public class Euler001 extends EulerProblem {
+public class Euler001 implements EulerProblem {
 
     /**
      * Brute force solution, iterate through full range
      *
      * @return solution to Problem 1
      */
-    @Override
-    protected String solve() {
+    public String solve() {
         int answer = 0;
         for (int i = 1; i < 1000; i++) {
             if ((i % 3 == 0) || (i % 5 == 0)) {

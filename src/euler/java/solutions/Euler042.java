@@ -15,7 +15,7 @@ import java.util.HashSet;
  *
  * Using words.txt, a 16K text file containing nearly two-thousand common English words, how many are triangle words?
  */
-public class Euler042 extends EulerProblem {
+public class Euler042 implements EulerProblem {
 
     private static final int TRIANGLE_LIMIT = 10000;
     /**
@@ -25,7 +25,7 @@ public class Euler042 extends EulerProblem {
      *
      * @return solution to Problem 42
      */
-    protected String solve() {
+    public String solve() {
         HashSet<Integer> triangleNums = generateTriangleNumbers(TRIANGLE_LIMIT);
         String[] words;
 

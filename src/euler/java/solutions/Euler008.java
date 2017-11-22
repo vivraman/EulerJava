@@ -29,7 +29,7 @@ package euler.java.solutions;
  * Find the thirteen adjacent digits in the 1000-digit number that have the
  * greatest product. What is the value of this product?
  */
-public class Euler008 extends EulerProblem {
+public class Euler008 implements EulerProblem {
 
     private static final String number = "73167176531330624919225119674426574742355349194934"
             + "96983520312774506326239578318016984801869478851843"
@@ -61,8 +61,7 @@ public class Euler008 extends EulerProblem {
      *
      * @return solution to Problem 8
      */
-    @Override
-    protected String solve() {
+    public String solve() {
         long answer = 0, currentNum = 1, rmcount = 0;
         char currentChar;
         for (int index = 0; index < 1000; index++) {

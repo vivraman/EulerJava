@@ -12,7 +12,7 @@ import java.util.HashSet;
  * Find the sum of the only eleven primes that are both truncatable from left to right and right to left.
  * NOTE: 2, 3, 5, and 7 are not considered to be truncatable primes.
  */
-public class Euler037 extends EulerProblem {
+public class Euler037 implements EulerProblem {
 
 
     private static final int[] POWERS = {1, 10, 100, 1000, 10000, 100000, 1000000, 10000000, 100000000};
@@ -23,8 +23,7 @@ public class Euler037 extends EulerProblem {
      *
      * @return solution to Problem 37
      */
-    @Override
-    protected String solve() {
+    public String solve() {
         ArrayList<Integer> primeList = new ArrayList<>();
         HashSet<Integer> set = new HashSet<>();
         long product = 0, counter = 0;

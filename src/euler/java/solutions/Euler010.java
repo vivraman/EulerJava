@@ -6,7 +6,7 @@ package euler.java.solutions;
  * <p>
  * Find the sum of all the primes below two million.
  */
-public class Euler010 extends EulerProblem {
+public class Euler010 implements EulerProblem {
 
     int[] primes;
 
@@ -16,8 +16,7 @@ public class Euler010 extends EulerProblem {
      *
      * @return solution to Problem 10
      */
-    @Override
-    protected String solve() {
+    public String solve() {
         long answer = 2;
         boolean isPrime;
         int limit, counter = 0;

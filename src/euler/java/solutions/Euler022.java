@@ -14,7 +14,7 @@ import java.util.*;
  * <p>
  * What is the total of all the name scores in the file?
  */
-public class Euler022 extends EulerProblem {
+public class Euler022 implements EulerProblem {
 
     /**
      * Solution to this problem involves simply sorting the list and finding the name scores of each element
@@ -23,8 +23,7 @@ public class Euler022 extends EulerProblem {
      *
      * @return solution to Problem 22
      */
-    @Override
-    protected String solve() {
+    public String solve() {
         long answer = 0;
         try {
             BufferedReader br = new BufferedReader(new FileReader(new File("src/euler/resources/p022_names.txt")));

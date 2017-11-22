@@ -10,7 +10,7 @@ import java.util.HashSet;
  *
  * How many circular primes are there below one million?
  */
-public class Euler035 extends EulerProblem {
+public class Euler035 implements EulerProblem {
 
     private static final int LIMIT = 1000000;
     private static final int[] POWERS = {1, 10, 100, 1000, 10000, 100000, 1000000};
@@ -23,8 +23,7 @@ public class Euler035 extends EulerProblem {
      *
      * @return solution to Problem 35
      */
-    @Override
-    protected String solve() {
+    public String solve() {
         ArrayList<Integer> primeList = new ArrayList<>();
         HashSet<Integer> primes = generatePrimes(primeList, LIMIT);
 

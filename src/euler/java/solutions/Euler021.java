@@ -11,15 +11,14 @@ package euler.java.solutions;
  * <p>
  * Evaluate the sum of all the amicable numbers under 10000.
  */
-public class Euler021 extends EulerProblem {
+public class Euler021 implements EulerProblem {
 
     /**
      * Brute force. Iterate through first 10000 numbers and check for divisor sums.
      *
      * @return solution to Problem 21
      */
-    @Override
-    protected String solve() {
+    public String solve() {
         long answer = 0;
         int temp = 0;
         for (int i = 1; i < 10001; i++) {

@@ -7,7 +7,7 @@ package euler.java.solutions;
  * <p>
  * What is the 10,001st prime number?
  */
-public class Euler007 extends EulerProblem {
+public class Euler007 implements EulerProblem {
 
     int[] primes;
 
@@ -18,8 +18,7 @@ public class Euler007 extends EulerProblem {
      *
      * @return solution to Problem 1
      */
-    @Override
-    protected String solve() {
+    public String solve() {
         primes = new int[10001];
         primes[0] = 2;
         int counter = 1;

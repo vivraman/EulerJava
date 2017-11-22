@@ -14,7 +14,7 @@ import java.util.*;
  * the coefficients, a and b, for the quadratic expression that produces the maximum number of primes for
  * consecutive values of n, starting with n=0.
  */
-public class Euler027 extends EulerProblem {
+public class Euler027 implements EulerProblem {
 
     private static final int PRIME_LIMIT = 10000;
 
@@ -27,8 +27,7 @@ public class Euler027 extends EulerProblem {
      *
      * @return solution to Problem 27
      */
-    @Override
-    protected String solve() {
+    public String solve() {
         ArrayList<Integer> primeList = new ArrayList<>();
         HashSet<Integer> primes = generatePrimes(primeList, PRIME_LIMIT);
 

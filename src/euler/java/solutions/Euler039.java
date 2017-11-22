@@ -7,7 +7,7 @@ package euler.java.solutions;
  *
  * For which value of p ≤ 1000, is the number of solutions maximised?
  */
-public class Euler039 extends EulerProblem {
+public class Euler039 implements EulerProblem {
 
     private static final int LIMIT = 1000;
     /**
@@ -18,8 +18,7 @@ public class Euler039 extends EulerProblem {
      *
      * @return solution to Problem 39
      */
-    @Override
-    protected String solve() {
+    public String solve() {
         int maxP = 0, maxCounter = 0;
         int[] squares = generateSquares(LIMIT);
         for (int p = 12; p <= LIMIT; p++) {

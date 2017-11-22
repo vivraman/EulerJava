@@ -13,7 +13,7 @@ package euler.java.solutions;
  * letters. The use of "and" when writing out numbers is in compliance with British
  * usage.
  */
-public class Euler017 extends EulerProblem {
+public class Euler017 implements EulerProblem {
 
     //one to nineteen
     private static final int[] VAL_TWENTY = {3, 3, 5, 4, 4, 3, 5, 5, 4, 3,
@@ -29,8 +29,7 @@ public class Euler017 extends EulerProblem {
      *
      * @return solution to Problem 17
      */
-    @Override
-    protected String solve() {
+    public String solve() {
         long answer = 0;
         for (int i = 1; i < 1001; i++) {
             int temp = i;

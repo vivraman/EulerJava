@@ -30,7 +30,7 @@ package euler.java.solutions;
  * What is the greatest product of four adjacent numbers in the same direction
  * (up, down, left, right, or diagonally) in the 20×20 grid
  */
-public class Euler011 extends EulerProblem {
+public class Euler011 implements EulerProblem {
 
     int[][] value = new int[][]{
             {8, 2, 22, 97, 38, 15, 0, 40, 0, 75, 4, 5, 7, 78, 52, 12, 50, 77, 91, 8},
@@ -61,8 +61,7 @@ public class Euler011 extends EulerProblem {
      *
      * @return solution to Problem 11
      */
-    @Override
-    protected String solve() {
+    public String solve() {
         int answer = 0, tempVar = 0;
         for (int i = 0; i < value.length; i++) {
             for (int j = 0; j < value.length; j++) {

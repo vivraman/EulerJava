@@ -20,7 +20,7 @@ import java.util.Iterator;
  * <p>
  * NOTE: Once the chain starts the terms are allowed to go above one million.
  */
-public class Euler014 extends EulerProblem {
+public class Euler014 implements EulerProblem {
 
     private static final int LIMIT = 1000000;
 
@@ -32,8 +32,7 @@ public class Euler014 extends EulerProblem {
      *
      * @return solution to Problem 14
      */
-    @Override
-    protected String solve() {
+    public String solve() {
         int[] reference = new int[LIMIT * 10];
         int answer = 0, maxterm = 0;
         reference[1] = 1;
@@ -77,7 +76,7 @@ public class Euler014 extends EulerProblem {
      *
      * @return solution to Problem 14
      */
-    protected String solve2() {
+    public String solve2() {
         int answer = 0, maxterm = 0;
         for (int num = 1; num < LIMIT; num += 2) {
             int termcount = 1;

@@ -15,7 +15,7 @@ package euler.java.solutions;
  * <p>
  * How many Sundays fell on the first of the month during the twentieth century (1 Jan 1901 to 31 Dec 2000)?
  */
-public class Euler019 extends EulerProblem {
+public class Euler019 implements EulerProblem {
 
     private static final int[] daysInMonth = {0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
 
@@ -24,8 +24,7 @@ public class Euler019 extends EulerProblem {
      *
      * @return solution for Problem 19
      */
-    @Override
-    protected String solve() {
+    public String solve() {
         int day = 7, month = 1, year = 1900;
         int counter = 0;
         while (year < 2001) {

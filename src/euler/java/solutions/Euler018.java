@@ -9,7 +9,7 @@ package euler.java.solutions;
  * <p>
  * Find the maximum total from top to bottom of the triangle below:
  */
-public class Euler018 extends EulerProblem {
+public class Euler018 implements EulerProblem {
 
     private static final int[][] triangle = new int[][]{
             {75},
@@ -36,8 +36,7 @@ public class Euler018 extends EulerProblem {
      *
      * @return solution to Problem 18
      */
-    @Override
-    protected String solve() {
+    public String solve() {
         for (int i = triangle.length - 1; i > 0; i--) {
             for (int j = 0; j < triangle[i].length - 1; j++) {
                 if (triangle[i][j] < triangle[i][j + 1]) {

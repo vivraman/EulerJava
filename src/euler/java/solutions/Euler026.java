@@ -6,7 +6,7 @@ import java.math.BigInteger;
  * Problem 26: Reciprocal cycles
  * Find the value of d < 1000 for which 1/d contains the longest recurring cycle in its decimal fraction part.
  */
-public class Euler026 extends EulerProblem {
+public class Euler026 implements EulerProblem {
 
     /**
      * Brute force all odd numbers up to 1000, with the exception of numbers divisible by 5, in order to find
@@ -15,8 +15,7 @@ public class Euler026 extends EulerProblem {
      *
      * @return solution to Problem 26
      */
-    @Override
-    protected String solve() {
+    public String solve() {
         int maxrep = 0, repnum = 0, temp = 0;
         for (int i = 3; i < 1000; i += 2) {
             if (i % 5 != 0) {

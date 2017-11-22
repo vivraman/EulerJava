@@ -10,7 +10,7 @@ import java.util.ArrayList;
  * What is the smallest positive number that is evenly divisible by all of
  * the numbers from 1 to 20?
  */
-public class Euler005 extends EulerProblem {
+public class Euler005 implements EulerProblem {
 
     ArrayList<Integer> primes;
 
@@ -22,8 +22,7 @@ public class Euler005 extends EulerProblem {
      *
      * @return solution to Problem 11
      */
-    @Override
-    protected String solve() {
+    public String solve() {
         int answer = 1;
         primes = new ArrayList<Integer>();
         for (int i = 2; i < 20; i++) {
@@ -58,8 +57,7 @@ public class Euler005 extends EulerProblem {
      *
      * @return solution to Problem 11 done by hand
      */
-    @Override
-    protected String solveByHand() {
+    public String solveByHand() {
         return ((2 * 2 * 2 * 2) * (3 * 3) * 5 * 7 * 11 * 13 * 17 * 19) + "";
     }
 }

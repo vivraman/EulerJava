@@ -7,7 +7,7 @@ package euler.java.solutions;
  * <p>
  * Find the largest palindrome made from the product of two 3-digit numbers.
  */
-public class Euler004 extends EulerProblem {
+public class Euler004 implements EulerProblem {
 
     /**
      * Brute force: assume that multiples will be between 900 and 999 and that
@@ -20,8 +20,7 @@ public class Euler004 extends EulerProblem {
      *
      * @return solution to Problem 4
      */
-    @Override
-    protected String solve() {
+    public String solve() {
         int answer = 0;
         for (int i = 999; i > 900; i--) {
             for (int j = 999; j > 900; j--) {

@@ -7,7 +7,7 @@ package euler.java.solutions;
  * <p>
  * How many such routes are there through a 20×20 grid?
  */
-public class Euler015 extends EulerProblem {
+public class Euler015 implements EulerProblem {
 
     /**
      * Since movement in this question is restricted to downward and rightward paths, for an n x n lattice,
@@ -18,8 +18,7 @@ public class Euler015 extends EulerProblem {
      *
      * @return solution to Problem 15
      */
-    @Override
-    protected String solve() {
+    public String solve() {
         long answer = 1;
         for (int i = 40; i > 20; i--) {
             answer *= i;

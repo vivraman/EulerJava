@@ -17,7 +17,7 @@ package euler.java.solutions;
  * <p>
  * Find the sum of all the positive integers which cannot be written as the sum of two abundant numbers.
  */
-public class Euler023 extends EulerProblem {
+public class Euler023 implements EulerProblem {
 
     private static final int UPPERBOUND = 28123;
 
@@ -28,8 +28,7 @@ public class Euler023 extends EulerProblem {
      *
      * @return solution to Problem 23
      */
-    @Override
-    protected String solve() {
+    public String solve() {
         int[] abundants = new int[UPPERBOUND];
         int abundnum = 0;
         long answer = 0;

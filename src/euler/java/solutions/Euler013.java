@@ -6,7 +6,7 @@ import java.math.BigInteger;
  * Problem 13: Large sum
  * Work out the first ten digits of the sum of the following one-hundred 50-digit numbers.
  */
-public class Euler013 extends EulerProblem {
+public class Euler013 implements EulerProblem {
 
     private static final String[] numbers = {
             "37107287533902102798797998220837590246510135740250",
@@ -116,8 +116,7 @@ public class Euler013 extends EulerProblem {
      *
      * @return solution to Problem 13
      */
-    @Override
-    protected String solve() {
+    public String solve() {
         BigInteger answer = new BigInteger(numbers[0]);
         for (int i = 1; i < numbers.length; i++) {
             answer = answer.add(new BigInteger(numbers[i]));

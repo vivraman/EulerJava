@@ -11,15 +11,14 @@ import java.math.BigInteger;
  * <p>
  * Find the sum of the digits in the number 100!
  */
-public class Euler020 extends EulerProblem {
+public class Euler020 implements EulerProblem {
 
     /**
      * BigInteger makes this implementation straightforward
      *
      * @return solution to Problem 20
      */
-    @Override
-    protected String solve() {
+    public String solve() {
         long answer = 0;
         BigInteger fact = new BigInteger("1");
         for (int i = 2; i < 100; i++) {

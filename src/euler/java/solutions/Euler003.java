@@ -8,7 +8,7 @@ import java.util.*;
  * <p>
  * What is the largest prime factor of the number 600851475143 ?
  */
-public class Euler003 extends EulerProblem {
+public class Euler003 implements EulerProblem {
 
     ArrayList<Long> primes;
 
@@ -19,8 +19,7 @@ public class Euler003 extends EulerProblem {
      *
      * @return solution to Problem 3
      */
-    @Override
-    protected String solve() {
+    public String solve() {
         long value = 600851475143L;
         long answer = 0;
         primes = new ArrayList<Long>();

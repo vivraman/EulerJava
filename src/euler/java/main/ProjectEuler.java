@@ -1,6 +1,9 @@
 package euler.java.main;
 
+import java.io.*;
+import java.util.List;
 import java.util.Iterator;
+import java.util.Hashtable;
 import java.util.Scanner;
 import java.util.Set;
 import org.reflections.Reflections;
@@ -13,6 +16,7 @@ public class ProjectEuler {
     private static final String SOLUTION_PREPEND_CLASS = "Euler";
 
     private static final String INPUT_RUNALL = "runall";
+    private static final int REPS_TO_AVERAGE = 10;
 
     public static void main(String[] args) {
         new ProjectEuler();
@@ -24,10 +28,11 @@ public class ProjectEuler {
         try {
             String input = sc.next().trim();
             if (input.toLowerCase().equals(INPUT_RUNALL)) {
-                solveAllProblems();
+                solveAllProblemsNR(REPS_TO_AVERAGE);
             } else {
-                Class problem = findEulerClass(sc.next().trim());
-                solveProblem((EulerProblem) problem.newInstance());
+                input = String.format("%03d", Integer.parseInt(input));
+                Class problem = findEulerClass(input);
+                solveProblem((EulerProblem) problem.newInstance(), true);
             }
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException ex) {
             System.out.println("Issue with accessing class. Problem likely does not exist or has not been solved. "
@@ -36,22 +41,82 @@ public class ProjectEuler {
     }
 
     private Class findEulerClass(String input) throws ClassNotFoundException {
-        while (input.length() < 3) {
-            input = '0' + input;
-        }
-
         String path = SOLUTION_PREPEND_PACKAGE + "." + SOLUTION_PREPEND_CLASS + input;
-        System.out.printf("Accessing %s%n", path);
         return Class.forName(path);
     }
 
-    private long solveProblem(EulerProblem problem) {
-        long time = System.currentTimeMillis();
+    private double solveProblem(EulerProblem problem, boolean printSolution) {
+        double time = System.currentTimeMillis();
 
-        System.out.printf("The answer is: %s%n", problem.solve());
-        System.out.printf("Time Elapsed: %s ms", (time = System.currentTimeMillis() - time));
+        String solution = problem.solve();
+        for (int i = 1; i < REPS_TO_AVERAGE; i++) {
+            problem.solve();
+        }
+        time = (System.currentTimeMillis() - time) / REPS_TO_AVERAGE;
+
+        if (printSolution) System.out.printf("Solution to %s: %s%n", problem.getClass().getSimpleName(), solution);
+        System.out.printf("Average execution time for %s: %05.1f ms", problem.getClass().getSimpleName(), time);
 
         return time;
+    }
+
+    private void solveAllProblemsNR(int rep) {
+        Hashtable<String, Double> values = retrieveTimes();
+        System.out.printf("Times retrieved for %d problems%n", values.size());
+
+        for (int i = 1; i < 1000; i++) {
+            try {
+                String problemString = String.format("%03d", i);
+                EulerProblem problem = (EulerProblem) (findEulerClass(problemString).newInstance());
+
+                double result = solveProblem(problem, false);
+
+                boolean update;
+                if (update = (!values.containsKey(problemString) || values.get(problemString) < result)) {
+                    values.put(problemString, result);
+                }
+                System.out.printf(update ? " Updated.%n" : "%n");
+            } catch (ClassNotFoundException | InstantiationException | IllegalAccessException ex) {}
+        }
+
+        writeTimes(values);
+    }
+
+    private Hashtable<String, Double> retrieveTimes () {
+        Hashtable<String, Double> values = new Hashtable<>();
+
+        File f = new File("src/euler/resources/times.csv");
+        try {
+            BufferedReader reader = new BufferedReader(new FileReader(f));
+
+            String temp = null;
+            while ((temp = reader.readLine()) != null) {
+                String[] lineVals = temp.split(",");
+                values.put(lineVals[0], Double.parseDouble(lineVals[1]));
+            }
+
+            reader.close();
+        } catch (IOException e) {
+            System.out.println("times.csv does not exist. Creating new file based on current execution times.");
+        }
+
+        return values;
+    }
+
+    private void writeTimes(Hashtable<String, Double> values) {
+        File f = new File("src/euler/resources/times.csv");
+        try {
+            BufferedWriter writer = new BufferedWriter(new FileWriter(f));
+
+            List<String> keys = Utility.setToSortedList(values.keySet());
+            for (String key : keys) {
+                String line = String.format("%s,%05.1f%n", key, values.get(key));
+                writer.write(line);
+            }
+
+            writer.close();
+        } catch (IOException e) {}
+
     }
 
     private void solveAllProblems() {

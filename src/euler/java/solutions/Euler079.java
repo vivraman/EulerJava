@@ -17,7 +17,7 @@ import java.util.HashMap;
  * Given that the three characters are always asked for in order, analyse the file so as to determine the shortest
  * possible secret passcode of unknown length.
  */
-public class Euler079 implements EulerProblem{
+public class Euler079 implements EulerProblem {
 
     /**
      * Assumes (via inspection) no recurring digits. First, generate a map from every digit that appears in a login

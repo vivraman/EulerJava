@@ -1,5 +1,7 @@
 package euler.java.solutions;
 
+import euler.java.main.Utility;
+
 /**
  * 145 is a curious number, as 1! + 4! + 5! = 1 + 24 + 120 = 145.
  *
@@ -10,7 +12,7 @@ package euler.java.solutions;
 public class Euler034 implements EulerProblem {
 
     private static final int FACTORIAL_GENERATION_LIMIT = 10;
-    private static final int[] FACTORIALS = getFactorials(FACTORIAL_GENERATION_LIMIT);
+    private static final int[] FACTORIALS = Utility.getFactorialArray(FACTORIAL_GENERATION_LIMIT);
 
     /**
      * Brute force solution with appropriate upper bound. For every number from 10 (since numbers below 10 can't be
@@ -62,21 +64,5 @@ public class Euler034 implements EulerProblem {
         }
 
         return sum;
-    }
-
-    /**
-     * Generate a list of factorial values, from 0 to limit - 1 inclusive, so that continuous calculation is not
-     * necessary. Note that 0! = 1
-     *
-     * @param limit upper bound of factorials to generate, exclusive
-     * @return integer array containing factorial values based on index
-     */
-    private static int[] getFactorials(int limit) {
-        int[] fact = new int[limit];
-        fact[0] = 1;
-        for (int i = 1; i < fact.length; i++) {
-            fact[i] = fact[i - 1] * i;
-        }
-        return fact;
     }
 }

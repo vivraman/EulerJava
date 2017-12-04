@@ -1,5 +1,7 @@
 package euler.java.solutions;
 
+import euler.java.main.Utility;
+
 /**
  * Problem 24: Lexicographic permutations
  * A permutation is an ordered arrangement of objects. For example, 3124 is one possible permutation of the digits
@@ -26,9 +28,9 @@ public class Euler024 implements EulerProblem {
         long answer = 0;
         int lexnum = 1000000;
         boolean[] nums = new boolean[DIGITS];
-        int[] fact = generateFactorials(DIGITS - 1);
+        int[] fact = Utility.getFactorialArray(DIGITS);
 
-        for (int i = fact.length - 1; i >= 0; i--) {
+        for (int i = fact.length - 1; i > 0; i--) {
             int counter = 0;
             while (lexnum > fact[i]) {
                 lexnum -= fact[i];
@@ -39,7 +41,7 @@ public class Euler024 implements EulerProblem {
                     --counter;
                 }
                 if (counter == 0) {
-                    answer += (j + 1) * Math.pow(10, i + 1);
+                    answer += (j + 1) * Math.pow(10, i);
                     nums[j] = true;
                     break;
                 }
@@ -48,18 +50,4 @@ public class Euler024 implements EulerProblem {
         return answer + "";
     }
 
-    /**
-     * Generate array of factorials, from 1! up to num!
-     *
-     * @param num number of factorials to generate
-     * @return array of factorials
-     */
-    private int[] generateFactorials(int num) {
-        int[] fact = new int[num];
-        int temp = 1;
-        for (int i = 0; i < fact.length; i++) {
-            fact[i] = (temp *= (i + 1));
-        }
-        return fact;
-    }
 }

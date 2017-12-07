@@ -2,6 +2,8 @@ package euler.java.solutions;
 
 import euler.java.main.Utility;
 
+import java.util.ArrayList;
+
 /**
  * Problem 24: Lexicographic permutations
  * A permutation is an ordered arrangement of objects. For example, 3124 is one possible permutation of the digits
@@ -13,6 +15,8 @@ import euler.java.main.Utility;
 public class Euler024 implements EulerProblem {
 
     private static final int DIGITS = 10;
+    private static final int LEXICOGRAPHIC_NUMBER = 1000000;
+    private static final int[] FACTORIALS = Utility.getFactorialArray(DIGITS);
 
     /**
      * To find the millionth lexicographic permutation we effectively have to find the proper digit for each
@@ -26,28 +30,23 @@ public class Euler024 implements EulerProblem {
      */
     public String solve() {
         long answer = 0;
-        int lexnum = 1000000;
-        boolean[] nums = new boolean[DIGITS];
-        int[] fact = Utility.getFactorialArray(DIGITS);
+        int lexnum = LEXICOGRAPHIC_NUMBER;
 
-        for (int i = fact.length - 1; i > 0; i--) {
+        ArrayList<Integer> nums = new ArrayList();
+        for (int i = 0; i < 10; i++) {
+            nums.add(i);
+        }
+
+        for (int i = FACTORIALS.length - 1; i >= 0; i--) {
             int counter = 0;
-            while (lexnum > fact[i]) {
-                lexnum -= fact[i];
+            while (lexnum > FACTORIALS[i]) {
+                lexnum -= FACTORIALS[i];
                 counter++;
             }
-            for (int j = 0; j < nums.length; j++) {
-                if (!nums[j]) {
-                    --counter;
-                }
-                if (counter == 0) {
-                    answer += (j + 1) * Math.pow(10, i);
-                    nums[j] = true;
-                    break;
-                }
-            }
+
+            answer = answer * 10 + nums.get(counter);
+            nums.remove(counter);
         }
         return answer + "";
     }
-
 }

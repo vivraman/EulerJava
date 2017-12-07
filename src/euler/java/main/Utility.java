@@ -32,4 +32,33 @@ public class Utility {
         }
         return fact;
     }
+
+    /**
+     * Checks if parameter is palindrome using arithmetic reversal
+     *
+     * @param number integer to check
+     * @return true if number is a palindrome, false otherwise
+     */
+    public static boolean isPalindrome(int number) {
+        int num = number, reverse = 0;
+        while (num > 0) {
+            reverse = reverse * 10 + num % 10;
+            num /= 10;
+        }
+        return reverse == number;
+    }
+
+    /**
+     * Checks if parameter is binary palindrome via generating reversal through bit operations.
+     *
+     * @param number number to check
+     * @return true if number is a binary palindrome, false otherwise
+     */
+    public static boolean isBinaryPalindrome(int number) {
+        int reverseTry = 0;
+        for(int temp = number; temp > 0; temp >>= 1) {
+            reverseTry = (reverseTry << 1) + (temp & 1);
+        }
+        return number == reverseTry;
+    }
 }

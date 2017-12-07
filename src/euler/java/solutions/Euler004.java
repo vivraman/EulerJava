@@ -1,5 +1,7 @@
 package euler.java.solutions;
 
+import euler.java.main.Utility;
+
 /**
  * Problem 4: Largest palindrome product
  * A palindromic number reads the same both ways. The largest palindrome made
@@ -26,45 +28,12 @@ public class Euler004 implements EulerProblem {
             for (int j = 999; j > 900; j--) {
                 if (i % 11 == 0) {
                     int temp = i * j;
-                    if (isPalindromeARITH(temp) && temp > answer) {
+                    if (Utility.isPalindrome(temp) && temp > answer) {
                         answer = temp;
                     }
                 }
             }
         }
         return answer + "";
-    }
-
-
-    /**
-     * Quick check of palindrome using string conversion
-     *
-     * @param number integer to check
-     * @return true if number is a palindrome, false otherwise
-     */
-    private boolean isPalindromeSTR(int number) {
-        String num = number + "";
-        for (int i = 0; i < num.length() / 2; i++) {
-            if (num.charAt(i) != num.charAt(num.length() - (i + 1))) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-
-    /**
-     * Quick check of palindrome using arithmetic reversal
-     *
-     * @param number integer to check
-     * @return true if number is a palindrome, false otherwise
-     */
-    private boolean isPalindromeARITH(int number) {
-        int num = number, reverse = 0;
-        while (num > 0) {
-            reverse = reverse * 10 + num % 10;
-            num /= 10;
-        }
-        return reverse == number;
     }
 }

@@ -39,37 +39,10 @@ public class Euler012 implements EulerProblem {
         int[] primes = Utility.getPrimeArray(DIVISORS);
 
         int current = 5, triangleNum = current * (current + 1) / 2;
-        while (numberOfDivisors(triangleNum, primes) <= DIVISORS) {
+        while (Utility.numberOfDivisors(triangleNum, primes) <= DIVISORS) {
             triangleNum += ++current;
         }
 
         return triangleNum + "";
-    }
-
-    /**
-     * Finds the number of divisors of the parameter by finding prime factors. A number's divisors
-     * can be found by multiplying the frequency + 1 of all of its prime factors together. Uses brute-force check.
-     * Upper bound of the prime facotrs to check is number/2, since beyond that point either the number would
-     * already have been factored by 2, or the number is prime. Returns 1 if the number is prime.
-     *
-     * @param number
-     * @return number of prime factors in number
-     */
-    private int numberOfDivisors(int number, int[] primes) {
-        int current = number, numberOfDivisors = 1, primeFactorFreq = 0, limit = number / 2;
-        for (int i = 0; i < primes.length; i++) {
-            if (primes[i] > limit) {
-                break;
-            }
-            primeFactorFreq = 1;
-            while (current % primes[i] == 0) {
-                primeFactorFreq++;
-                current /= primes[i];
-            }
-            if (primeFactorFreq > 1) {
-                numberOfDivisors *= primeFactorFreq;
-            }
-        }
-        return numberOfDivisors;
     }
 }

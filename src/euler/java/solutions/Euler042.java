@@ -1,5 +1,7 @@
 package euler.java.solutions;
 
+import euler.java.main.Utility;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -26,7 +28,8 @@ public class Euler042 implements EulerProblem {
      * @return solution to Problem 42
      */
     public String solve() {
-        HashSet<Integer> triangleNums = generateTriangleNumbers(TRIANGLE_LIMIT);
+        HashSet<Integer> triangleNums = new HashSet();
+        triangleNums.addAll(Utility.generateTriangleNumbers(TRIANGLE_LIMIT));
         String[] words;
 
         try {
@@ -50,23 +53,4 @@ public class Euler042 implements EulerProblem {
         return triangleWordCount + "";
     }
 
-    /**
-     * Sequentially generates triangle numbers up to a certain upper bound (instead of explicit generation,
-     * which is more expensive overall).
-     *
-     * @param upperBound Upper limit on triangle numbers that are generated. Once a generated triangle number
-     *                   exceeds this upperBound, generation will end.
-     * @return set of triangle numbers
-     */
-    private HashSet<Integer> generateTriangleNumbers(int upperBound) {
-        HashSet<Integer> triangleNums = new HashSet<>();
-        int counter = 1, sum = 1;
-        triangleNums.add(sum);
-
-        while (sum < upperBound) {
-            triangleNums.add(sum += ++counter);
-        }
-
-        return triangleNums;
-    }
 }

@@ -28,7 +28,7 @@ public class Euler030 implements EulerProblem {
 
     /**
      * Calculates the sum of fifth powers of a number's digits and checks whether the sum is equal to
-     * the number of
+     * the parameter passed
      *
      * @param i the number to calculate the power sum of
      * @return true if sum of the fifth powers of digits of i is equal to i, false otherwise.

@@ -35,7 +35,6 @@ public class Euler035 implements EulerProblem {
         while (it.hasNext()) {
             int i = it.next();
             if (isCircular(i, primes)) {
-                System.out.println(i);
                 counter++;
             }
         }

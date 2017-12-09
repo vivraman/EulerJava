@@ -63,26 +63,21 @@ public class Euler008 implements EulerProblem {
      */
     public String solve() {
         long answer = 0, currentNum = 1, rmcount = 0;
-        char currentChar;
+        int currentDigit;
         for (int index = 0; index < 1000; index++) {
-            if (rmcount < 13) {
-                if ((currentChar = number.charAt(index)) == '0') {
-                    currentNum = 1;
-                    rmcount = 0;
-                } else {
-                    currentNum *= (long) (number.charAt(index) - '0');
-                    rmcount++;
-                }
+            currentDigit = number.charAt(index) - '0';
+
+            if (currentDigit == 0) {
+                currentNum = 1;
+                rmcount = 0;
+            } else if (rmcount < 13) {
+                currentNum *= currentDigit;
+                rmcount++;
             } else {
-                if ((currentChar = number.charAt(index)) == '0') {
-                    currentNum = 1;
-                    rmcount = 0;
-                } else {
-                    currentNum = currentNum / ((long) (number.charAt(index - 13) - '0')) * ((long) (number.charAt(index) - '0'));
+                currentNum = currentNum / ((long) (number.charAt(index - 13) - '0')) * currentDigit;
+                if (currentNum > answer) {
+                    answer = currentNum;
                 }
-            }
-            if (currentNum > answer) {
-                answer = currentNum;
             }
         }
 

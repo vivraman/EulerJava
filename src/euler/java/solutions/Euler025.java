@@ -8,6 +8,7 @@ import java.math.BigInteger;
  */
 public class Euler025 implements EulerProblem {
 
+    private static final BigInteger THOUSAND_DIGITS = new BigInteger("10").pow(999);
     /**
      * Brute force solution involving BigInteger.
      *
@@ -18,10 +19,8 @@ public class Euler025 implements EulerProblem {
 
         prev = new BigInteger("1");
         next = new BigInteger("2");
-        upper = new BigInteger("10");
-        upper = upper.pow(999);
         int nextindex = 3;
-        while (next.compareTo(upper) == -1) {
+        while (next.compareTo(THOUSAND_DIGITS) == -1) {
             temp = next.add(prev);
             prev = next;
             next = temp;

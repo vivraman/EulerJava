@@ -82,9 +82,3 @@ public class Euler047 implements EulerProblem {
         return counter == CONSECUTIVE_PRIME_FACTOR_NUM;
     }
 }
-/**
- *
- 47
- Solution to Euler047: 134043
- Average execution time for Euler047: 268.8 ms
- */

@@ -1,5 +1,7 @@
 package euler.java.solutions;
 
+import euler.java.main.Utility;
+
 import java.util.HashSet;
 
 /**
@@ -35,9 +37,9 @@ public class Euler045 implements EulerProblem {
 
         long solution = 0, tri = 0, pen = 0, hex = 0;
         for (long i = 1; solution < 2; i++) {
-            tri = getTriangleNumber(i);
-            pen = getPentagonalNumber(i);
-            hex = getHexagonalNumber(i);
+            tri = Utility.getTriangleNumber(i);
+            pen = Utility.getPentagonalNumber(i);
+            hex = Utility.getHexagonalNumber(i);
 
             hexNums.add(hex);
             if (hexNums.contains(pen)) {
@@ -49,35 +51,5 @@ public class Euler045 implements EulerProblem {
 
         }
         return solution + "";
-    }
-
-    /**
-     * Generates the ith triangle number
-     *
-     * @param i index of number to generate
-     * @return triangle number at position i in the sequence
-     */
-    public long getTriangleNumber(long i) {
-        return i * (i + 1) / 2;
-    }
-
-    /**
-     * Generates the ith pentagonal number
-     *
-     * @param i index of number to generate
-     * @return pentagonal number at position i in the sequence
-     */
-    public long getPentagonalNumber(long i) {
-        return i * (3 * i - 1) / 2;
-    }
-
-    /**
-     * Generates the ith hexagonal number
-     *
-     * @param i index of number to generate
-     * @return hexagonal number at position i in the sequence
-     */
-    public long getHexagonalNumber(long i) {
-        return i * (2 * i - 1);
     }
 }

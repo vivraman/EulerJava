@@ -1,5 +1,7 @@
 package euler.java.solutions;
 
+import euler.java.main.Utility;
+
 /**
  * Problem 39: Integer right triangles
  * If p is the perimeter of a right angle triangle with integral length sides, {a,b,c}, there are exactly three
@@ -20,13 +22,13 @@ public class Euler039 implements EulerProblem {
      */
     public String solve() {
         int maxP = 0, maxCounter = 0;
-        int[] squares = generateSquares(LIMIT);
+        int[] squares = Utility.generateSquares(LIMIT);
         for (int p = 12; p <= LIMIT; p++) {
             int counter = 0;
             for (int a = 1; a < p; a++) {
                 for (int b = a + 1; b < p - (a + b); b++) {
                     int c = p - (a + b);
-                    if (squares[a - 1] + squares[b - 1] - squares[c - 1] == 0) {
+                    if (squares[a] + squares[b] - squares[c] == 0) {
                         counter++;
                     }
                 }
@@ -39,18 +41,5 @@ public class Euler039 implements EulerProblem {
         }
 
         return maxP + "";
-    }
-
-    /**
-     * Generate array of squares from 1 to limit, with index lookup shifted down by 1.
-     * @param limit size of array, upper bound of squares to find
-     * @return array of squares from 1 to limit
-     */
-    private int[] generateSquares(int limit) {
-        int[] squares = new int[limit];
-        for (int i = 1; i <= limit; i++) {
-            squares[i - 1] = i * i;
-        }
-        return squares;
     }
 }

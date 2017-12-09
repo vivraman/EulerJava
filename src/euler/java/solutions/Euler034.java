@@ -48,7 +48,7 @@ public class Euler034 implements EulerProblem {
     }
 
     /**
-     * Returns the integer value corresponding to the sum of the factorials of the digits of i
+     * Returns the sum of the factorials of the digits of the passed parameter
      *
      * @param i the number to compute the sum of
      * @return sum of the factorials of the digits of i

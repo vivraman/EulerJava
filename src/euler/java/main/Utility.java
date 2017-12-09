@@ -133,4 +133,100 @@ public class Utility {
         }
         return primes;
     }
+
+    /**
+     * Finds the number of divisors of the parameter by finding prime factors. A number's divisors
+     * can be found by multiplying the frequency + 1 of all of its prime factors together. Uses brute-force check.
+     * Upper bound of the prime facotrs to check is number/2, since beyond that point either the number would
+     * already have been factored by 2, or the number is prime. Returns 1 if the number is prime.
+     *
+     * @param number number to find number of divisors of
+     * @param primes array of primes, must at minimum contain all primes less than number / 2
+     * @return number of divisors in number, -1 if primes is insufficiently large
+     */
+    public static int numberOfDivisors(int number, int[] primes) {
+        if (number / 2 < primes[primes.length - 1]) {
+            return -1;
+        }
+
+        int current = number, numberOfDivisors = 1, primeFactorFreq = 0, limit = number / 2;
+        for (int i = 0; i < primes.length; i++) {
+            if (primes[i] > limit) {
+                break;
+            }
+            primeFactorFreq = 1;
+            while (current % primes[i] == 0) {
+                primeFactorFreq++;
+                current /= primes[i];
+            }
+            if (primeFactorFreq > 1) {
+                numberOfDivisors *= primeFactorFreq;
+            }
+        }
+        return numberOfDivisors;
+    }
+
+    /**
+     * Generate array of squares from 1 to limit inclusive.
+     *
+     * @param limit size of array, upper bound of squares to find
+     * @return array of squares from 1 to limit
+     */
+    public static int[] generateSquares(int limit) {
+        int[] squares = new int[limit + 1];
+        for (int i = 0; i <= limit; i++) {
+            squares[i] = i * i;
+        }
+        return squares;
+    }
+
+    /**
+     * Sequentially generates triangle numbers up to a certain upper bound (instead of explicit generation,
+     * which is more expensive overall).
+     *
+     * @param upperBound Upper limit on triangle numbers that are generated. Once a generated triangle number
+     *                   exceeds this upperBound, generation will end.
+     * @return set of triangle numbers
+     */
+    public static ArrayList<Integer> generateTriangleNumbers(int upperBound) {
+        ArrayList<Integer> triangleNums = new ArrayList();
+        int counter = 1, sum = 1;
+        triangleNums.add(sum);
+
+        while ((sum += ++counter) < upperBound) {
+            triangleNums.add(sum);
+        }
+
+        return triangleNums;
+    }
+
+    /**
+     * Generates the ith triangle number
+     *
+     * @param i index of number to generate
+     * @return triangle number at position i in the sequence
+     */
+    public static long getTriangleNumber(long i) {
+        return i * (i + 1) / 2;
+    }
+
+    /**
+     * Generates the ith pentagonal number
+     *
+     * @param i index of number to generate
+     * @return pentagonal number at position i in the sequence
+     */
+    public static long getPentagonalNumber(long i) {
+        return i * (3 * i - 1) / 2;
+    }
+
+    /**
+     * Generates the ith hexagonal number
+     *
+     * @param i index of number to generate
+     * @return hexagonal number at position i in the sequence
+     */
+    public static long getHexagonalNumber(long i) {
+        return i * (2 * i - 1);
+    }
 }

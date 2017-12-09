@@ -24,9 +24,10 @@ public class ProjectEuler {
 
     public ProjectEuler() {
         System.out.println("Type the problem number to run");
+        String input = null;
         Scanner sc = new Scanner(System.in);
         try {
-            String input = sc.next().trim();
+            input = sc.next().trim();
             if (input.toLowerCase().equals(INPUT_RUNALL)) {
                 solveAllProblemsNR(REPS_TO_AVERAGE);
             } else {
@@ -37,6 +38,8 @@ public class ProjectEuler {
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException ex) {
             System.out.println("Issue with accessing class. Problem likely does not exist or has not been solved. "
                     + ex);
+        } catch (ClassCastException ex) {
+            System.out.printf("Class Euler%s does not properly implement the EulerProblem interface.", input);
         }
     }
 

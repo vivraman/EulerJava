@@ -1,6 +1,6 @@
 package euler.java.solutions;
 
-import java.util.*;
+import java.util.ArrayList;
 
 /**
  * Problem 3: Largest prime factor
@@ -10,27 +10,30 @@ import java.util.*;
  */
 public class Euler003 implements EulerProblem {
 
-    ArrayList<Long> primes;
+
+    public static final long COMPOSITE = 600851475143L;
 
     /**
      * Brute force; find all primes (skip 2 since our value is odd) less than
      * half of our value. If prime, divide (if divisible) our value by the new prime
      * repeatedly until it is no longer divisible. Continue until value = 1 (done)
      *
+     * Uses modified version of Utility.getPrimeListBounded
+     *
      * @return solution to Problem 3
      */
     public String solve() {
-        long value = 600851475143L;
-        long answer = 0;
-        primes = new ArrayList<Long>();
-        primes.add(2L);
-        for (long i = 3; i <= 600851475143L / 2; i += 2) {
+        long value = COMPOSITE;
+        int answer = 0;
+
+        ArrayList<Integer> primes = new ArrayList();
+        primes.add(2);
+
+        for (int i = 3; value != 1; i += 2) {
             boolean isPrime = true;
-            int limit = (int) (Math.sqrt(i));
-            for (int j = 0; j < primes.size(); j++) {
-                if (primes.get(j) > limit) {
-                    break;
-                }
+
+            int searchLimit = (int) (Math.sqrt(i));
+            for (int j = 0; primes.get(j) <= searchLimit; j++) {
                 if (i % primes.get(j) == 0) {
                     isPrime = false;
                     break;
@@ -39,14 +42,12 @@ public class Euler003 implements EulerProblem {
             if (isPrime) {
                 primes.add(i);
                 while (value % i == 0) {
-                    answer = i;
                     value /= i;
-                    if (value == 1) {
-                        return answer + "";
-                    }
+                    answer = i;
                 }
             }
         }
-        return "";
+
+        return answer + "";
     }
 }

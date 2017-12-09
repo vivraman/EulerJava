@@ -1,5 +1,6 @@
 package euler.java.solutions;
 
+import euler.java.main.Utility;
 /**
  * Problem 7: 10001st prime
  * By listing the first six prime numbers: 2, 3, 5, 7, 11, and 13, we can see
@@ -9,7 +10,7 @@ package euler.java.solutions;
  */
 public class Euler007 implements EulerProblem {
 
-    int[] primes;
+    private static final int LIMIT = 10001;
 
     /**
      * Brute force solution. Find primes using previously established methods,
@@ -19,27 +20,6 @@ public class Euler007 implements EulerProblem {
      * @return solution to Problem 1
      */
     public String solve() {
-        primes = new int[10001];
-        primes[0] = 2;
-        int counter = 1;
-        int answer = 3;
-        while (counter < 10001) {
-            boolean isPrime = true;
-            int limit = (int) (Math.sqrt(answer));
-            for (int j = 0; j < counter; j++) {
-                if (primes[j] > limit) {
-                    break;
-                }
-                if (answer % primes[j] == 0) {
-                    isPrime = false;
-                    break;
-                }
-            }
-            if (isPrime) {
-                primes[counter++] = answer;
-            }
-            answer += 2;
-        }
-        return primes[10000] + "";
+        return Utility.getPrimeArray(LIMIT)[LIMIT - 1] + "";
     }
 }

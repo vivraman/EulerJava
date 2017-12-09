@@ -1,6 +1,9 @@
 package euler.java.solutions;
 
+import euler.java.main.Utility;
+
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.HashSet;
 
 /**
@@ -13,7 +16,7 @@ import java.util.HashSet;
 public class Euler035 implements EulerProblem {
 
     private static final int LIMIT = 1000000;
-    private static final int[] POWERS = {1, 10, 100, 1000, 10000, 100000, 1000000};
+    private static final int[] POWERS = Utility.getPowerArray(10, 6);
 
     /**
      * First, generate a list of primes up to 1000000. Store this in both a HashSet (for quick
@@ -24,47 +27,19 @@ public class Euler035 implements EulerProblem {
      * @return solution to Problem 35
      */
     public String solve() {
-        ArrayList<Integer> primeList = new ArrayList<>();
-        HashSet<Integer> primes = generatePrimes(primeList, LIMIT);
+        HashSet<Integer> primes = new HashSet();
+        primes.addAll(Utility.getPrimeListBounded(LIMIT));
 
+        Iterator<Integer> it = primes.iterator();
         int counter = 0;
-        for (int i = 0 ; i < primeList.size(); i++) {
-            if (isCircular(primeList.get(i), primes)) {
+        while (it.hasNext()) {
+            int i = it.next();
+            if (isCircular(i, primes)) {
+                System.out.println(i);
                 counter++;
             }
         }
         return counter + "";
-    }
-
-    /**
-     * Generates a HashSet containing all primes from 2 to limit, inclusive. Also adds these primes to
-     * primeList
-     *
-     * @param primeList the list to add primes to
-     * @param searchLimit the upper bound (inclusive) of primes to search for
-     * @return a HashSet containing all primes found
-     */
-    private HashSet<Integer> generatePrimes(ArrayList<Integer> primeList, int searchLimit){
-        HashSet<Integer> set = new HashSet<>();
-        set.add(2);
-        primeList.add(2);
-
-        for (int i = 3; i <= searchLimit; i += 2) {
-            boolean isPrime = true;
-            int limit = (int) (Math.sqrt(i));
-            for (int j = 0; primeList.get(j) <= limit && j < primeList.size(); j++) {
-                if (i % primeList.get(j) == 0) {
-                    isPrime = false;
-                    break;
-                }
-            }
-            if (isPrime) {
-                set.add(i);
-                primeList.add(i);
-            }
-        }
-
-        return set;
     }
 
     /**

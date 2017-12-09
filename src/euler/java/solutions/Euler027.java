@@ -1,5 +1,6 @@
 package euler.java.solutions;
 
+import euler.java.main.Utility;
 import java.util.*;
 
 /**
@@ -21,19 +22,20 @@ public class Euler027 implements EulerProblem {
     /**
      * Generate an initial list of primes up to an arbitrary number, in this case, 10000. Then, for each possible
      * value of a and b, brute force iterate through each quadratic and find the max number of consecutive primes
-     * found. Use hash table for prime list for quick lookup
+     * found. Store prime list in hash table for quick lookup.
      *
      * Note that for n = 0 in the quadratic the solution is 0^2 + 0a + b = b. Hence b must be prime.
      *
      * @return solution to Problem 27
      */
     public String solve() {
-        ArrayList<Integer> primeList = new ArrayList<>();
-        HashSet<Integer> primes = generatePrimes(primeList, PRIME_LIMIT);
+        LinkedHashSet<Integer> primes = new LinkedHashSet();
+        primes.addAll(Utility.getPrimeListBounded(PRIME_LIMIT));
+        Iterator<Integer> it = primes.iterator();
 
         int maxPrimeCount = 0, product = 0;
         int a = 0, b = 0;
-        for (int test = 0; (b = primeList.get(test)) < 1000; test++) {
+        while ((b = it.next()) < 1000) {
             for (a = -1000; a < 1001; a++) {
                 int consecPrimeCount;
                 if ((consecPrimeCount = consecPrimes(a, b, primes)) > maxPrimeCount) {
@@ -43,36 +45,6 @@ public class Euler027 implements EulerProblem {
             }
         }
         return product + "";
-    }
-
-    /**
-     * Generates a HashSet containing all primes from 2 to limit, inclusive. Also adds these primes to
-     * primeList
-     *
-     * @param primeList the list to add primes to
-     * @param searchLimit the upper bound (inclusive) of primes to search for
-     * @return a HashSet containing all primes found
-     */
-    private HashSet<Integer> generatePrimes(ArrayList<Integer> primeList, int searchLimit){
-        HashSet<Integer> set = new HashSet<>();
-        set.add(2);
-        primeList.add(2);
-
-        for (int i = 3; i <= searchLimit; i += 2) {
-            boolean isPrime = true;
-            int limit = (int) (Math.sqrt(i));
-            for (int j = 0; primeList.get(j) <= limit && j < primeList.size(); j++) {
-                if (i % primeList.get(j) == 0) {
-                    isPrime = false;
-                    break;
-                }
-            }
-            if (isPrime) {
-                set.add(i);
-                primeList.add(i);
-            }
-        }
-        return set;
     }
 
     /**

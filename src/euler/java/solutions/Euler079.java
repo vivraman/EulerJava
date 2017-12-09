@@ -38,9 +38,7 @@ public class Euler079 implements EulerProblem {
             String temp;
             while ((temp = reader.readLine()) != null) {
                 for (int i = 0; i < temp.length(); i++) {
-                    if (!digits.containsKey(temp.charAt(i))) {
-                        digits.put(temp.charAt(i), new HashSet<Character>());
-                    }
+                    digits.putIfAbsent(temp.charAt(i), new HashSet());
 
                     if (i + 1 < temp.length()) {
                         digits.get(temp.charAt(i)).add(temp.charAt(i + 1));
@@ -51,7 +49,7 @@ public class Euler079 implements EulerProblem {
             while (digits.keySet().size() > 0) {
                 char addToAnswer = 0;
                 for (Character c : digits.keySet()) {
-                    if (digits.get(c).size() == 0) {
+                    if (digits.get(c).isEmpty()) {
                         addToAnswer = c;
                         digits.remove(c);
                         for (Character d : digits.keySet()) {

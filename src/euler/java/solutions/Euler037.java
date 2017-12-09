@@ -1,7 +1,9 @@
 package euler.java.solutions;
 
-import java.util.ArrayList;
-import java.util.HashSet;
+import euler.java.main.Utility;
+
+import java.util.LinkedHashSet;
+import java.util.Iterator;
 
 /**
  * Problem 37: Truncatable primes
@@ -15,41 +17,40 @@ import java.util.HashSet;
 public class Euler037 implements EulerProblem {
 
 
-    private static final int[] POWERS = {1, 10, 100, 1000, 10000, 100000, 1000000, 10000000, 100000000};
+    private static final int[] POWERS = Utility.getPowerArray(10, 8);
 
     /**
      * Continuously generate primes until 11 truncated primes are found, sum the found primes as
      * necessary. Use a final int[] of powers of ten so that there is no need to constantly generate them.
      *
+     * Uses modified version of Utility.getPrimeListBounded
+     *
      * @return solution to Problem 37
      */
     public String solve() {
-        ArrayList<Integer> primeList = new ArrayList<>();
-        HashSet<Integer> set = new HashSet<>();
-        long product = 0, counter = 0;
-
+        LinkedHashSet<Integer> set = new LinkedHashSet();
         set.add(2);
-        primeList.add(2);
 
-        int i = 3;
-        while (counter < 11) {
+        Iterator<Integer> it = null;
+
+        int product = 0, counter = 0, j = 0;
+        for (int i = 3; counter < 11; i+= 2) {
             boolean isPrime = true;
-            int limit = (int) (Math.sqrt(i));
-            for (int j = 0; primeList.get(j) <= limit && j < primeList.size(); j++) {
-                if (i % primeList.get(j) == 0) {
+            int searchLimit = (int) (Math.sqrt(i));
+            it = set.iterator();
+            while ((j = it.next()) <= searchLimit) {
+                if (i % j == 0) {
                     isPrime = false;
                     break;
                 }
             }
             if (isPrime) {
                 set.add(i);
-                primeList.add(i);
                 if (i > 10 && isTruncatable(i, set)) {
                     product += i;
                     counter++;
                 }
             }
-            i += 2;
         }
 
         return product + "";
@@ -64,7 +65,7 @@ public class Euler037 implements EulerProblem {
      * @param primes set of primes to check results against
      * @return true if num can be truncated in both directions, false otherwise
      */
-    private boolean isTruncatable(int num, HashSet<Integer> primes) {
+    private boolean isTruncatable(int num, LinkedHashSet<Integer> primes) {
         int tempNum = num;
         while ((tempNum /= 10) > 0) {
             if (!primes.contains(tempNum)) {
@@ -72,19 +73,10 @@ public class Euler037 implements EulerProblem {
             }
         }
 
-        tempNum = num;
-        int powerNum = 0;
-        for (int i = 1; i < POWERS.length; i++) {
-            if (num > POWERS[i]) {
-                powerNum = i;
-            } else break;
-        }
-
-        while ((tempNum -= (tempNum / POWERS[powerNum]) * POWERS[powerNum]) > 0) {
-            if (!primes.contains(tempNum)) {
+        for (int i = 1; POWERS[i - 1] < num; i++) {
+            if (!primes.contains(num % POWERS[i])) {
                 return false;
             }
-            powerNum--;
         }
 
         return true;

@@ -18,11 +18,11 @@ public class Utility {
     }
 
     /**
-     * Generate a list of factorial values, from 0 to limit - 1 inclusive, so that continuous calculation is not
+     * Generate an array of factorial values, from 0! to (limit - 1)! inclusive, so that continuous calculation is not
      * necessary. Note that 0! = 1
      *
      * @param limit upper bound of factorials to generate, exclusive
-     * @return integer array containing factorial values based on index
+     * @return integer array containing factorial values ordered based on index
      */
     public static int[] getFactorialArray(int limit) {
         int[] fact = new int[limit];
@@ -31,6 +31,22 @@ public class Utility {
             fact[i] = fact[i - 1] * i;
         }
         return fact;
+    }
+
+    /**
+     * Generate an array of power values, from base ^ 0 to base ^ (limit - 1) inclusive, so that continuous calculation is not
+     * necessary.
+     *
+     * @param maxPower upper bound of powers to generate, exclusive
+     * @return integer array containing power values ordered based on index
+     */
+    public static int[] getPowerArray(int base, int maxPower) {
+        int[] power = new int[maxPower + 1];
+        power[0] = 1;
+        for (int i = 1; i < power.length; i++) {
+            power[i] = power[i - 1] * base;
+        }
+        return power;
     }
 
     /**
@@ -60,5 +76,61 @@ public class Utility {
             reverseTry = (reverseTry << 1) + (temp & 1);
         }
         return number == reverseTry;
+    }
+
+    /**
+     * Generates the first n primes and returns them in an array.
+     *
+     * @param n number of primes to generate
+     * @return array containing first n primes
+     */
+    public static int[] getPrimeArray(int n) {
+        int[] primes = new int[n];
+
+        primes[0] = 2;
+
+        for (int counter = 1, i = 3; counter < n; i += 2) {
+            boolean isPrime = true;
+            int searchLimit = (int) (Math.sqrt(i));
+            for (int j = 0; primes[j] <= searchLimit; j++) {
+                if (i % primes[j] == 0) {
+                    isPrime = false;
+                    break;
+                }
+            }
+            if (isPrime) {
+                primes[counter++] = i;
+            }
+        }
+
+        return primes;
+    }
+
+    /**
+     * Generates an ArrayList containing all primes less than or equal to upperBound.
+     *
+     * @param upperBound upper bound of prime search
+     * @return ArrayList of primes bounded by limit
+     */
+    public static ArrayList<Integer> getPrimeListBounded(int upperBound) {
+        ArrayList<Integer> primes = new ArrayList();
+
+        primes.add(2);
+
+        for (int i = 3; i < upperBound; i += 2) {
+            boolean isPrime = true;
+
+            int searchLimit = (int) (Math.sqrt(i));
+            for (int j = 0; primes.get(j) <= searchLimit; j++) {
+                if (i % primes.get(j) == 0) {
+                    isPrime = false;
+                    break;
+                }
+            }
+            if (isPrime) {
+                primes.add(i);
+            }
+        }
+        return primes;
     }
 }

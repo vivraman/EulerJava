@@ -17,6 +17,8 @@ public class Euler047 implements EulerProblem {
      * check if the number has four distinct prime factors. Once four consecutive numbers are found, return i - 4
      * since the sequence is (i - 4, i - 3, i - 2, i - 1)
      *
+     * Uses modified version of Utility.getPrimeListBounded
+     *
      * @return solution to Problem 47
      */
     public String solve() {
@@ -25,15 +27,11 @@ public class Euler047 implements EulerProblem {
 
         int i = 3, repeat = 0;
         while (repeat != 4) {
-            boolean currentlyComposite = true;
+            boolean isPrime = i % 2 == 1;
 
             if (i % 2 == 1) {
-                boolean isPrime = true;
                 int limit = (int) (Math.sqrt(i));
-                for (int j = 0; j < primes.size(); j++) {
-                    if (primes.get(j) > limit) {
-                        break;
-                    }
+                for (int j = 0; primes.get(j) <= limit; j++) {
                     if (i % primes.get(j)  == 0) {
                         isPrime = false;
                         break;
@@ -42,10 +40,9 @@ public class Euler047 implements EulerProblem {
                 if (isPrime) {
                     primes.add(i);
                 }
-                currentlyComposite = !isPrime;
             }
 
-            if (currentlyComposite && primeFactorNum(i, primes)) {
+            if (!isPrime && primeFactorNum(i, primes)) {
                 repeat++;
             } else repeat = 0;
 
@@ -85,3 +82,9 @@ public class Euler047 implements EulerProblem {
         return counter == CONSECUTIVE_PRIME_FACTOR_NUM;
     }
 }
+/**
+ *
+ 47
+ Solution to Euler047: 134043
+ Average execution time for Euler047: 268.8 ms
+ */

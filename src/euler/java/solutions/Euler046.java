@@ -19,30 +19,30 @@ public class Euler046 implements EulerProblem {
      * (using the list of primes and squares the algorithm already has). Thus, the first number to fail this check is
      * the solution
      *
+     * Uses modified version of Utility.getPrimeListBounded
+     *
      * @return solution to Problem 46
      */
     public String solve() {
         int solution = 0;
 
-        ArrayList<Integer> primes = new ArrayList<Integer>();
+        ArrayList<Integer> primes = new ArrayList(), squares = new ArrayList();
         primes.add(2);
-        ArrayList<Integer> squares = new ArrayList<Integer>();
         squares.add(1);
 
+        int temp = squares.size() + 1, nextSquare = temp * temp;
         for (int i = 3; solution == 0; i += 2) {
             //Checks to see if square should be added
-            int nextSquare = squares.size() + 1;
-            if (i > nextSquare * nextSquare) {
-                squares.add(nextSquare * nextSquare);
+            if (i > nextSquare) {
+                squares.add(nextSquare);
+                temp = squares.size() + 1;
+                nextSquare = temp * temp;
             }
 
             //Checks to see if prime should be added
             boolean isPrime = true;
-            int limit = (int) (Math.sqrt(i));
-            for (int j = 0; j < primes.size(); j++) {
-                if (primes.get(j) > limit) {
-                    break;
-                }
+            int searchLimit = (int) (Math.sqrt(i));
+            for (int j = 0; primes.get(j) <= searchLimit; j++) {
                 if (i % primes.get(j) == 0) {
                     isPrime = false;
                     break;

@@ -12,26 +12,22 @@ import java.util.ArrayList;
  */
 public class Euler005 implements EulerProblem {
 
-    ArrayList<Integer> primes;
-
     /**
-     * Multiply together the highest powers of primes less than x that are
-     * also less than x. First find all primes less than x, then while finding
-     * these primes, see how many times they can be raised while still staying
+     * Multiply together the highest powers of primes less than x that are also less than x. First find all primes
+     * less than x, then while finding these primes, see how many times they can be raised while still staying
      * below x. Multiply that result with current answer.
+     *
+     * Uses modified version of Utility.getPrimeListBounded
      *
      * @return solution to Problem 11
      */
     public String solve() {
-        int answer = 1;
-        primes = new ArrayList<Integer>();
+        long answer = 1;
+        ArrayList<Integer> primes = new ArrayList();
         for (int i = 2; i < 20; i++) {
             boolean isPrime = true;
             int limit = (int) (Math.sqrt(i));
-            for (int j = 0; j < primes.size(); j++) {
-                if (primes.get(j) > limit) {
-                    break;
-                }
+            for (int j = 0; j < primes.size() && primes.get(j) <= limit; j++) {
                 if (i % primes.get(j) == 0) {
                     isPrime = false;
                     break;
@@ -39,6 +35,7 @@ public class Euler005 implements EulerProblem {
             }
             if (isPrime) {
                 primes.add(i);
+
                 int temp = i;
                 while (temp * i < 20) {
                     temp = temp * i;

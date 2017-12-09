@@ -11,7 +11,7 @@ package euler.java.solutions;
  */
 public class Euler002 implements EulerProblem {
 
-    int[] primes;
+    private static final int LIMIT = 4000000;
 
     /**
      * Brute force solution, iterate through all fibonacci numbers:
@@ -22,7 +22,7 @@ public class Euler002 implements EulerProblem {
         int answer = 0;
         int n = 1;
         int n_ = 1;
-        while (n < 4000000) {
+        while (n < LIMIT) {
             int temp = n;
             n += n_;
             n_ = temp;

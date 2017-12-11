@@ -1,6 +1,9 @@
 package euler.java.solutions;
 
+import euler.java.main.Utility;
+
 import java.util.ArrayList;
+import java.util.HashSet;
 
 /**
  * Problem 47: Distinct prime factors
@@ -51,7 +54,6 @@ public class Euler047 implements EulerProblem {
 
         return (i - 4) + "";
     }
-
     /**
      * Checks to see if a number's distinct prime factors equal CONSECUTIVE_PRIME_FACTOR_NUM. Iterates through
      * currently-found primes until i is fully factorized or loop is broken prematurely. Loop can be broken if
@@ -64,11 +66,8 @@ public class Euler047 implements EulerProblem {
      */
     private boolean primeFactorNum(int i, ArrayList<Integer> primes) {
         int limit = i / 2 + 1, currentPrime = 0, counter = 0;
-        for (int j = 0; i > 1; j++) {
+        for (int j = 0; i > 1 && currentPrime <= limit; j++) {
             currentPrime = primes.get(j);
-            if (currentPrime > limit) {
-                break;
-            }
             if (i % currentPrime == 0) {
                 if (++counter > CONSECUTIVE_PRIME_FACTOR_NUM) {
                     return false;
@@ -81,4 +80,40 @@ public class Euler047 implements EulerProblem {
 
         return counter == CONSECUTIVE_PRIME_FACTOR_NUM;
     }
+
+
+    public String solve2() {
+        ArrayList<Integer> primes = Utility.getPrimeListBounded(1000000);
+        ArrayList<Integer> fourPrimeFactors = getNPrimeFactors(primes, 4);
+    }
+
+
+    public ArrayList<Integer> getNPrimeFactors(ArrayList<Integer> primes, int num) {
+        ArrayList<Integer> nPrimeFactorNums = new ArrayList();
+        for (int i = 0; i < primes.size(); i++) {
+            int prime = primes.get(i), temp = 1;
+            HashSet<Integer> tempSet = new HashSet();
+            tempSet.add(prime);
+            while (temp * prime < 1000000) {
+                temp *= prime;
+                nPrimeFactorNums.addAll(getNPrimeFactorsR(primes, num - 1, tempSet, temp));
+            }
+        }
+
+    }
+
+    public ArrayList<Integer> getNPrimeFactorsR(ArrayList<Integer> primes, int num, HashSet<Integer> set, int current) {
+        for (int i = 0; i < primes.size(); i++) {
+            int prime = primes.get(i), temp = current;
+            if (!set.contains(prime)) {
+                HashSet<Integer> tempSet = (HashSet) set.clone();
+                tempSet.add(prime);
+                while (temp * prime < 1000000) {
+                    temp *= prime;
+                    getNPrimeFactors
+                }
+            }
+        }
+    }
+
 }

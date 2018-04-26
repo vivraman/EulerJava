@@ -6,7 +6,6 @@ import java.util.Iterator;
 import java.util.Hashtable;
 import java.util.Scanner;
 import java.util.Set;
-import org.reflections.Reflections;
 
 import euler.java.solutions.*;
 
@@ -120,16 +119,5 @@ public class ProjectEuler {
             writer.close();
         } catch (IOException e) {}
 
-    }
-
-    private void solveAllProblems() {
-        Reflections reflections = new Reflections(SOLUTION_PREPEND_PACKAGE);
-        Set<Class<? extends Object>> eulerClasses = reflections.getSubTypesOf(Object.class);
-        Iterator<Class<? extends Object>> it = eulerClasses.iterator();
-
-        System.out.println(eulerClasses.size());
-        while (it.hasNext()) {
-            System.out.println(it.next().getName());
-        }
     }
 }

@@ -229,4 +229,35 @@ public class Utility {
     public static long getHexagonalNumber(long i) {
         return i * (2 * i - 1);
     }
+
+
+    /**
+     * Simplifies the fraction represented by the given parameters, and returns the simplified fraction as an int[].
+     * Iterates through list of primes and divides both numbers by each prime if divisible. Continues until current
+     * prime exceeds both numbers, at which point the fraction is fully simplified.
+     *
+     * @param num numerator of the fraction to be simplified
+     * @param den denominator of the fraction to be simplified
+     * @return the simplified fraction in the form of an int[]
+     */
+    public static int[] getSimplifiedFraction(int num, int den) {
+        int[] simplified = {num, den};
+        int limit = num > den ? num : den;
+
+        ArrayList<Integer> primes = Utility.getPrimeListBounded(limit);
+
+        for (int p : primes) {
+            while (simplified[0] % p == 0 && simplified[1] % p == 0) {
+                simplified[0] /= p;
+                simplified[1] /= p;
+                limit /= p;
+            }
+
+            if (p > limit) {
+                return simplified;
+            }
+        }
+
+        return simplified;
+    }
 }

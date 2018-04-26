@@ -1,6 +1,5 @@
 package euler.java.solutions;
 
-
 import java.util.ArrayList;
 
 /**

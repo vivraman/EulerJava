@@ -230,6 +230,15 @@ public class Utility {
         return i * (2 * i - 1);
     }
 
+    /**
+     * Checks to see whether a number is pentagonal
+     *
+     * @param i the number to check
+     * @return true if the number is pentagonal, false otherwise
+     */
+    public static boolean isPentagonaNumber(long i) {
+        return (Math.sqrt(24 * i + 1) + 1) % 6 == 0;
+    }
 
     /**
      * Simplifies the fraction represented by the given parameters, and returns the simplified fraction as an int[].
@@ -259,5 +268,27 @@ public class Utility {
         }
 
         return simplified;
+    }
+
+    /**
+     * Checks whether a x-digit number is pandigital (1-x). Uses a 9-bit integer to keep track of each potential digital
+     * value. Each digit value is represented by a 1 in the (x - 1)th place of the 9 bit integer, where x is the value
+     * of the digit. Then, continuously performing bitwise OR on each bitshifted integer allows us to check for
+     * duplicates; if there is no change after the OR, the digit in question has already appeared. Returns true if the
+     * end result of those consecutive ORs is equal to 1...1, with length x.
+     *
+     * @param num the number to check
+     * @return true if num is pandigital from 1-x, false otherwise
+     */
+    public static boolean isPandigital(int num) {
+        int allDigits = 0, count = 0, temp;
+
+        for (; num > 0; num /= 10, ++count) {
+            temp = allDigits;
+            if (temp == (allDigits |= 1 << (num % 10 - 1)))
+                return false;
+        }
+
+        return allDigits == (1 << count) - 1;
     }
 }

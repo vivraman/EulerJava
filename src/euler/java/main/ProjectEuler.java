@@ -2,10 +2,8 @@ package euler.java.main;
 
 import java.io.*;
 import java.util.List;
-import java.util.Iterator;
 import java.util.Hashtable;
 import java.util.Scanner;
-import java.util.Set;
 
 import euler.java.solutions.*;
 
@@ -15,7 +13,7 @@ public class ProjectEuler {
     private static final String SOLUTION_PREPEND_CLASS = "Euler";
 
     private static final String INPUT_RUNALL = "runall";
-    private static final int REPS_TO_AVERAGE = 10;
+    private static final int REPS_TO_AVERAGE = 1;
 
     public static void main(String[] args) {
         new ProjectEuler();
@@ -28,7 +26,7 @@ public class ProjectEuler {
         try {
             input = sc.next().trim();
             if (input.toLowerCase().equals(INPUT_RUNALL)) {
-                solveAllProblemsNR(REPS_TO_AVERAGE);
+                solveAllProblems(REPS_TO_AVERAGE);
             } else {
                 input = String.format("%03d", Integer.parseInt(input));
                 Class problem = findEulerClass(input);
@@ -57,12 +55,12 @@ public class ProjectEuler {
         time = (System.currentTimeMillis() - time) / REPS_TO_AVERAGE;
 
         if (printSolution) System.out.printf("Solution to %s: %s%n", problem.getClass().getSimpleName(), solution);
-        System.out.printf("Average execution time for %s: %05.1f ms", problem.getClass().getSimpleName(), time);
+        System.out.printf("Average execution time (%s iterations) for %s: %05.1f ms", REPS_TO_AVERAGE, problem.getClass().getSimpleName(), time);
 
         return time;
     }
 
-    private void solveAllProblemsNR(int rep) {
+    private void solveAllProblems(int rep) {
         Hashtable<String, Double> values = retrieveTimes();
         System.out.printf("Times retrieved for %d problems%n", values.size());
 

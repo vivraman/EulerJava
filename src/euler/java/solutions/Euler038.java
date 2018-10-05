@@ -1,5 +1,7 @@
 package euler.java.solutions;
 
+import euler.java.main.Utility;
+
 /**
  * Take the number 192 and multiply it by each of 1, 2, and 3. By concatenating each product we get the 1 to 9
  * pandigital, 192384576. We will call 192384576 the concatenated product of 192 and (1,2,3). The same can be achieved
@@ -9,7 +11,7 @@ package euler.java.solutions;
  * What is the largest 1 to 9 pandigital 9-digit number that can be formed as the concatenated product of an integer
  * with (1,2, ... , n) where n > 1?
  */
-public class Euler038 implements EulerProblem{
+public class Euler038 implements EulerProblem {
 
     /**
      * Brute-force approach with restricted bounds. Consider our solution to be the concatenated product of x and
@@ -33,7 +35,7 @@ public class Euler038 implements EulerProblem{
 
                 if (current.length() == 9) {
                     int candidate = Integer.parseInt(current.toString());
-                    if (isPandigital(candidate) && candidate > maxPandigital) {
+                    if (Utility.isPandigital(candidate) && candidate > maxPandigital) {
                         maxPandigital = candidate;
                     }
                 }

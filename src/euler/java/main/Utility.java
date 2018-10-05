@@ -291,4 +291,88 @@ public class Utility {
 
         return allDigits == (1 << count) - 1;
     }
+
+    /**
+     * Generate pandigital numbers iteratively and in increasing (lexicographic) order. Generate list of digits from 1
+     * to n, and then apply the following algorithm:
+     *
+     * 1) Find the largest index k such that a[k] < a[k + 1]. If no such index exists (k = -1), the permutation is the
+     * last permutation.
+     * 2) Find the largest index l greater than k such that a[k] < a[l].
+     * 3) Swap the value of a[k] with that of a[l].
+     * 4)Reverse the sequence from a[k + 1] up to and including the final element a[n].
+     * 5) Continuously convert each array sequence to number form after each permutation and add to list.
+     *
+     * @param start digit to start generation at
+     * @param end digit to end generation at
+     * @return list of all pandigital permutations with digits from start to end
+     */
+    public static ArrayList<Integer> generatePandigitalsOrdered(int start, int end) {
+        ArrayList<Integer> pandigitals = new ArrayList();
+
+        if (end < start) return null;
+
+        // generate starting pandigital values (lowest lexicographic pandigital number)
+        int[] values = new int[end - start + 1];
+        for (int i = 0; start <= end; i++) {
+            values[i] = start++;
+        }
+
+        pandigitals.add(Utility.getArrayNumericValue(values));
+
+        int k = 0;
+        // break if k value isn't assigned
+        while (k >= 0) {
+            k = -1;
+            // find value of k (
+            for (int i = values.length - 2; k < 0 && i >= 0 ; i--) {
+                if (values[i] < values[i + 1]) {
+                    k = i;
+                }
+            }
+
+            if (k != -1) {
+                // if k was found, find value of l
+                for (int l = values.length - 1; l > k; l--) {
+                    if (values[k] < values[l]) {
+                        // swap k and l values
+                        int temp = values[l];
+                        values[l] = values[k];
+                        values[k] = temp;
+
+                        k++;
+                        // reverse sequence from k + 1 to end
+                        for (int i = 0; i < ((values.length - 1) - k + 1)/2; i++) {
+                            // swap outer layers one by one until reversed
+                            temp = values[k + i];
+                            values[k + i] = values[values.length - 1 - i];
+                            values[values.length - 1 - i] = temp;
+                        }
+
+                        break;
+                    }
+                }
+                pandigitals.add(Utility.getArrayNumericValue(values));
+            }
+        }
+
+        System.out.println(pandigitals.size());
+        return pandigitals;
+    }
+
+    /**
+     * Converts array of digits to number represented by those digits, ordered by index
+     *
+     * @param values the array to convert
+     * @return integer representation of array
+     */
+    public static int getArrayNumericValue(int[] values) {
+        int num = values[0];
+        for (int i = 1; i < values.length; i++) {
+            num *= 10;
+            num += values[i];
+        }
+
+        return num;
+    }
 }

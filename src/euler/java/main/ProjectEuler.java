@@ -9,6 +9,7 @@ import euler.java.solutions.*;
 
 public class ProjectEuler {
 
+    // Current account name: 'altasig'
     private static final String SOLUTION_PREPEND_PACKAGE = "euler.java.solutions";
     private static final String SOLUTION_PREPEND_CLASS = "Euler";
 

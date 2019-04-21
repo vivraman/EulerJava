@@ -7,7 +7,7 @@ public class Utility {
     /**
      * Convert a Set (or any Collection) to a sorted List
      *
-     * @param c collection to convert
+     * @param c   collection to convert
      * @param <T> type being held by c
      * @return sorted list containing all objects held by c
      */
@@ -72,7 +72,7 @@ public class Utility {
      */
     public static boolean isBinaryPalindrome(int number) {
         int reverseTry = 0;
-        for(int temp = number; temp > 0; temp >>= 1) {
+        for (int temp = number; temp > 0; temp >>= 1) {
             reverseTry = (reverseTry << 1) + (temp & 1);
         }
         return number == reverseTry;
@@ -295,7 +295,7 @@ public class Utility {
     /**
      * Generate pandigital numbers iteratively and in increasing (lexicographic) order. Generate list of digits from 1
      * to n, and then apply the following algorithm:
-     *
+     * <p>
      * 1) Find the largest index k such that a[k] < a[k + 1]. If no such index exists (k = -1), the permutation is the
      * last permutation.
      * 2) Find the largest index l greater than k such that a[k] < a[l].
@@ -304,7 +304,7 @@ public class Utility {
      * 5) Continuously convert each array sequence to number form after each permutation and add to list.
      *
      * @param start digit to start generation at
-     * @param end digit to end generation at
+     * @param end   digit to end generation at
      * @return list of all pandigital permutations with digits from start to end
      */
     public static ArrayList<Integer> generatePandigitalsOrdered(int start, int end) {
@@ -325,7 +325,7 @@ public class Utility {
         while (k >= 0) {
             k = -1;
             // find value of k (
-            for (int i = values.length - 2; k < 0 && i >= 0 ; i--) {
+            for (int i = values.length - 2; k < 0 && i >= 0; i--) {
                 if (values[i] < values[i + 1]) {
                     k = i;
                 }
@@ -342,7 +342,7 @@ public class Utility {
 
                         k++;
                         // reverse sequence from k + 1 to end
-                        for (int i = 0; i < ((values.length - 1) - k + 1)/2; i++) {
+                        for (int i = 0; i < ((values.length - 1) - k + 1) / 2; i++) {
                             // swap outer layers one by one until reversed
                             temp = values[k + i];
                             values[k + i] = values[values.length - 1 - i];
@@ -356,7 +356,6 @@ public class Utility {
             }
         }
 
-        System.out.println(pandigitals.size());
         return pandigitals;
     }
 
@@ -375,4 +374,75 @@ public class Utility {
 
         return num;
     }
+
+    public static int getNumberOfDigits(long value) {
+        int digits = 1;
+
+        if (value >= 100000000) {
+            digits += 8;
+            value /= 100000000;
+        }
+        if (value >= 10000) {
+            digits += 4;
+            value /= 10000;
+        }
+        if (value >= 100) {
+            digits += 2;
+            value /= 100;
+        }
+        if (value >= 10) {
+            digits += 1;
+        }
+
+        return digits;
+    }
+
+    public static ArrayList<Integer> getDigitPermutations(int num) {
+        ArrayList<Integer> permutations = new ArrayList();
+
+        int[] digits = new int[Utility.getNumberOfDigits(num)];
+
+        int temp = num;
+        for (int i = digits.length - 1; i >= 0; i--) {
+            digits[i] = temp % 10;
+            temp /= 10;
+        }
+
+        heapPermutation(digits, digits.length, digits.length, permutations);
+
+        return permutations;
+    }
+
+    private static void heapPermutation(int a[], int size, int n, ArrayList<Integer> permutations) {
+        // if size becomes 1 then prints the obtained permutation
+        if (size == 1) {
+            if (a[0] != 0) {
+                int val = a[a.length - 1];
+                for (int i = a.length - 2; i >= 0; i--) {
+                    val = val * 10 + a[i];
+                }
+
+                permutations.add(val);
+            }
+            return;
+        }
+
+        for (int i = 0; i < size; i++) {
+            heapPermutation(a,size - 1, n, permutations);
+
+            // if size is odd, swap first and last element
+            if (size % 2 == 1) {
+                int temp = a[0];
+                a[0] = a[size - 1];
+                a[size - 1] = temp;
+            }
+            // If size is even, swap ith and last// element
+            else {
+                int temp = a[i];
+                a[i] = a[size - 1];
+                a[size - 1] = temp;
+            }
+        }
+    }
+
 }

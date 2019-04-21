@@ -4,6 +4,7 @@ import java.math.BigInteger;
 
 /**
  * Problem 20: Factorial digit sum
+ *
  * n! means n × (n − 1) × ... × 3 × 2 × 1
  * <p>
  * For example, 10! = 10 × 9 × ... × 3 × 2 × 1 = 3628800,

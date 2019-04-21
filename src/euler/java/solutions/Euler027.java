@@ -5,6 +5,7 @@ import java.util.*;
 
 /**
  * Problem 27: Quadratic primes
+ *
  * Euler discovered the remarkable quadratic formula: n^2 + n + 41. It turns out that the formula will produce 40
  * primes for the consecutive integer values 0 ≤ n ≤ 39.
  * <p>

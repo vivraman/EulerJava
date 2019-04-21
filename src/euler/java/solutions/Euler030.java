@@ -2,6 +2,7 @@ package euler.java.solutions;
 
 /**
  * Problem 30: Digit fifth powers
+ *
  * Find the sum of all the numbers that can be written as the sum of fifth powers of their digits.
  */
 public class Euler030 implements EulerProblem {

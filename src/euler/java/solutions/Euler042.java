@@ -20,6 +20,8 @@ import java.util.HashSet;
 public class Euler042 implements EulerProblem {
 
     private static final int TRIANGLE_LIMIT = 10000;
+    public static final String PATHNAME = "src/euler/resources/p042_words.txt";
+
     /**
      * Use hashed set of triangle numbers for quick recall, then find score for every triangle number in the
      * file and calculate score. Upper bound of triangle numbers to hash is arbitrary, but assumes that words
@@ -33,7 +35,7 @@ public class Euler042 implements EulerProblem {
         String[] words;
 
         try {
-            BufferedReader br = new BufferedReader(new FileReader(new File("src/euler/resources/p042_words.txt")));
+            BufferedReader br = new BufferedReader(new FileReader(new File(PATHNAME)));
             words = br.readLine().split(",");
         } catch (Exception e) {
             return null;

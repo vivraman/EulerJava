@@ -9,12 +9,11 @@ import euler.java.solutions.*;
 
 public class ProjectEuler {
 
-    // Current account name: 'altasig'
     private static final String SOLUTION_PREPEND_PACKAGE = "euler.java.solutions";
     private static final String SOLUTION_PREPEND_CLASS = "Euler";
 
     private static final String INPUT_RUNALL = "runall";
-    private static final int REPS_TO_AVERAGE = 1;
+    private static final int REPS_TO_AVERAGE = 10;
 
     public static void main(String[] args) {
         new ProjectEuler();

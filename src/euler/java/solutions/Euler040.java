@@ -2,6 +2,7 @@ package euler.java.solutions;
 
 /**
  * Problem 40: Champernowne's constant
+ *
  * An irrational decimal fraction is created by concatenating the positive integers: 0.1234567891011121314151617...
  * It can be seen that the 12th digit of the fractional part is 1.
  *

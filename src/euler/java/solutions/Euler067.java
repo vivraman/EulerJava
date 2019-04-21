@@ -3,9 +3,11 @@ package euler.java.solutions;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
+import java.io.IOException;
 
 /**
  * Problem 67: Maximum path sum II
+ *
  * By starting at the top of the triangle below and moving to adjacent numbers on the row below, the maximum total from top to bottom is 23.
  * 3
  * 7 4
@@ -17,6 +19,9 @@ import java.io.FileReader;
  */
 public class Euler067 implements EulerProblem {
 
+    public static final int DIMENSIONS = 100;
+    public static final String PATHNAME = "src/euler/resources/p067_triangle.txt";
+
     /**
      * Use the same method that was used in Problem 18 to solve this. First, generate the int[][] needed for the
      * previous algorithm, then simply insert and return the topmost value in the triangle.
@@ -24,19 +29,24 @@ public class Euler067 implements EulerProblem {
      * @return solution to Problem 67
      */
     public String solve() {
-        int[][] triangle = new int[100][];
+        int[][] triangle = new int[DIMENSIONS][];
 
         try {
             int counter = 1;
             String[] words;
-            BufferedReader br = new BufferedReader(new FileReader(new File("src/euler/resources/p067_triangle.txt")));
-            while ((words = br.readLine().split(" ")) != null) {
+            String line;
+            BufferedReader br = new BufferedReader(new FileReader(new File(PATHNAME)));
+            while ((line = br.readLine()) != null) {
+                words = line.split(" ");
+
                 triangle[counter - 1] = new int[counter];
                 for (int i = 0; i < triangle[counter - 1].length; i++) {
                     triangle[counter - 1][i] = Integer.parseInt(words[i]);
                 }
                 counter++;
             }
+        } catch (IOException e) {
+            e.printStackTrace();
         } finally {
             return findBestPath(triangle);
         }

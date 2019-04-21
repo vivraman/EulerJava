@@ -9,6 +9,7 @@ import java.util.HashMap;
 
 /**
  * Problem 79: Passcode derivation
+ *
  * A common security method used for online banking is to ask the user for three random characters from a passcode.
  * For example, if the passcode was 531278, they may ask for the 2nd, 3rd, and 5th characters; the expected reply
  * would be: 317.
@@ -19,6 +20,8 @@ import java.util.HashMap;
  * possible secret passcode of unknown length.
  */
 public class Euler079 implements EulerProblem {
+
+    public static final String PATHNAME = "src/euler/resources/p079_keylog.txt";
 
     /**
      * Assumes (via inspection) no recurring digits. First, generate a map from every digit that appears in a login
@@ -33,7 +36,7 @@ public class Euler079 implements EulerProblem {
         String answer = "";
         HashMap<Character, HashSet<Character>> digits = new HashMap();
         try {
-            BufferedReader reader = new BufferedReader(new FileReader(new File("src/euler/resources/p079_keylog.txt")));
+            BufferedReader reader = new BufferedReader(new FileReader(new File(PATHNAME)));
 
             String temp;
             while ((temp = reader.readLine()) != null) {

@@ -5,6 +5,7 @@ import java.util.*;
 
 /**
  * Problem 22: Names scores
+ *
  * Using names.txt (right click and 'Save Link/Target As...'), a 46K text file containing over five-thousand
  * first names, begin by sorting it into alphabetical order. Then working out the alphabetical value for
  * each name, multiply this value by its alphabetical position in the list to obtain a name score.
@@ -16,6 +17,8 @@ import java.util.*;
  */
 public class Euler022 implements EulerProblem {
 
+    public static final String PATHNAME = "src/euler/resources/p022_names.txt";
+
     /**
      * Solution to this problem involves simply sorting the list and finding the name scores of each element
      * in the list. Using Arrays.sort is a very effective way of sorting in Java; use it and iterate through
@@ -26,7 +29,7 @@ public class Euler022 implements EulerProblem {
     public String solve() {
         long answer = 0;
         try {
-            BufferedReader br = new BufferedReader(new FileReader(new File("src/euler/resources/p022_names.txt")));
+            BufferedReader br = new BufferedReader(new FileReader(new File(PATHNAME)));
             String[] words = br.readLine().split(",");
             Arrays.sort(words);
             for (int i = 0; i < words.length; i++) {

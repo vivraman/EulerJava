@@ -12,7 +12,7 @@ public class ProjectEuler {
     private static final String SOLUTION_PREPEND_PACKAGE = "euler.java.solutions";
     private static final String SOLUTION_PREPEND_CLASS = "Euler";
 
-    private static final String INPUT_RUNALL = "runall";
+    private static final String INPUT_RUN_ALL = "runall";
     private static final int REPS_TO_AVERAGE = 10;
 
     public static void main(String[] args) {
@@ -25,7 +25,7 @@ public class ProjectEuler {
         Scanner sc = new Scanner(System.in);
         try {
             input = sc.next().trim();
-            if (input.toLowerCase().equals(INPUT_RUNALL)) {
+            if (input.toLowerCase().equals(INPUT_RUN_ALL)) {
                 solveAllProblems(REPS_TO_AVERAGE);
             } else {
                 input = String.format("%03d", Integer.parseInt(input));
